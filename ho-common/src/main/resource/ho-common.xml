@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!--********************************************配置Spring*************************************** -->
+	<!-- 自动扫描 决定扫描哪个包下的文件 （控制器） -->
+	<context:component-scan base-package="com.qian.fang.ho">
+		<!-- 扫描时跳过 @Controller 注解的JAVA类 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" 
+			/> -->
+	</context:component-scan>
+
+	<!--********************************************配置hibernate******************************************** -->
+
+	<!--扫描配置文件(这里指向的是之前配置的那个jdbc.properties) 如果有改动需要修改 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!--配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />  <!--数据库连接驱动 -->
+		<property name="jdbcUrl" value="${jdbc.url}" />     <!--数据库地址 -->
+		<property name="user" value="${jdbc.username}" />   <!--用户名 -->
+		<property name="password" value="${jdbc.password}" />   <!--密码 -->
+		<property name="maxPoolSize" value="40" />      <!--最大连接数 -->
+		<property name="minPoolSize" value="1" />       <!--最小连接数 -->
+		<property name="initialPoolSize" value="10" />      <!--初始化连接池内的数据库连接 -->
+		<property name="maxIdleTime" value="20" />  <!--最大空闲时间 -->
+	</bean>
+
+	<!--配置session工厂 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--如果有修改需要改成对应的配置文件 -->
+		<property name="packagesToScan" value="com.qian.fang.ho.dic.table.entity" />
+		<property name="hibernateProperties">
+			<props>
+				<!--hibernate根据实体自动生成数据库表 -->
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<!--指定数据库方言 -->
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!--在控制台显示执行的数据库操作语句 -->
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<!--在控制台显示执行的数据哭操作语句（格式） -->
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!-- 自动生成DDL，修改表时需要此配置 -->
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>
+			</props>
+		</property>
+		<!-- <property name="mappingLocations" value="classpath:com/qian/fang/ho/dic/*.hbm.xml" /> -->
+		<property name="mappingLocations">
+			<value>classpath:com/qian/fang/ho/dic/dic.hbm.xml</value>
+		</property>
+
+		<!-- mappingResources 具体映射文件名 每添加一个hbm.xml文件,在<list>中添加一条<value>记录 <property name="mappingResources"> <list> <value>com/qian/fang/ho/dic/dic.hbm.xml</value> 
+			</list> </property> -->
+	</bean>
+
+	<!-- 事物管理器配置 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 用注解来实现事务管理 将所有具有@Transactional 注解的文件自动配置为声明式事务支持 <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+	<!-- xml配置事务 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!--切面 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="txPointcut" expression="execution(* com.qian.fang.ho.dic..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+</beans>

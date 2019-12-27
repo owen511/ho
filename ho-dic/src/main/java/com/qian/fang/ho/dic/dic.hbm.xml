@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 表注册 -->
+	<class name="com.qian.fang.ho.dic.table.entity.DicTableEntity" table="t_ho_dictable" optimistic-lock="version">
+		<id name="tableid" type="int" length="9">
+			<generator class="native" />
+		</id>
+		<version column="version" name="version" type="int" />
+		<!-- 一对多关联映射配置 映射关键点: 1.指定映射的集合属性：columns 2.集合属性对应的集合表：t_ho_diccolumn 3.集合表的外键字段：t_ho_diccolumn.tableid 4.集合元素的类型 -->
+		<set name="columns" cascade="delete" table="t_ho_diccolumn">
+			<key column="tableid"></key>
+			<one-to-many class="com.qian.fang.ho.dic.column.entity.DicColumnEntity" />
+		</set>
+		<property name="tablecode" type="string" length="32" unique="true" not-null="true" />
+		<property name="name" type="string" length="32" />
+		<property name="tabletype" type="char" length="1" />
+		<property name="keycolumn" type="string" length="32" />
+		<property name="codecolumn" type="string" length="32" />
+		<property name="namecolumn" type="string" length="32" />
+		<property name="statuscolumn" type="string" length="32" />
+		<property name="levelnocolumn" type="string" length="32" />
+		<property name="isleafcolumn" type="string" length="32" />
+		<property name="supercolumn" type="string" length="32" />
+		<property name="startdatecolumn" type="string" length="32" />
+		<property name="enddatecolumn" type="string" length="32" />
+		<property name="govid" type="string" length="10" />
+		<property name="govyear" type="int" length="4" />
+		<property name="uuid" type="string" length="32" />
+		<property name="remark" type="string" />
+	</class>
+	<!-- 表字段注册 -->
+	<class name="com.qian.fang.ho.dic.column.entity.DicColumnEntity" table="t_ho_diccolumn" optimistic-lock="version">
+		<id name="columnid" type="int" length="9">
+			<generator class="native" />
+		</id>
+		<version column="version" name="version" type="int" />
+		<!-- 多对一的映射 DicColumnEntity映射关键点: 1.映射的表属性：tableEntity 2.映射的表对象：对应的外键字段：tablecode 3.表的类型 -->
+		<many-to-one name="tableEntity" column="tableid" class="com.qian.fang.ho.dic.table.entity.DicTableEntity" />
+		<property name="columncode" type="string" length="32" unique="true" not-null="true" />
+		<property name="name" type="string" length="32" unique="true"/>
+		<property name="datatype" type="char" length="1" />
+		<property name="datalength" type="integer" length="20" />
+		<property name="scale" type="short" length="6" />
+		<property name="codeformat" type="string" length="20" />
+		<property name="filter" type="string" />
+		<property name="nullable" type="short" length="1" />
+		<property name="defaultvalue" type="string" />
+		<property name="govid" type="string" length="10" />
+		<property name="govyear" type="int" length="4" />
+		<property name="uuid" type="string" length="32" />
+		<property name="remark" type="string" />
+	</class>
+	<!-- 要素定义 -->
+	<class name="com.qian.fang.ho.dic.element.entity.DicElementEntity" table="t_ho_dicelement" optimistic-lock="version">
+		<id name="elementid" type="int" length="9">
+			<generator class="native"/>
+		</id>
+		<version column="version" name="version" type="int"/>
+		<!-- 多对一的映射 DicColumnEntity映射关键点: 1.映射的表属性：tableEntity 2.映射的表对象：对应的外键字段：tablecode 3.表的类型 -->
+		<many-to-one name="tableEntity" column="tableid" class="com.qian.fang.ho.dic.table.entity.DicTableEntity" />
+		<property name="elementcode" type="string" length="32" unique="true" not-null="true"/>
+		<property name="name" type="string" length="32" unique="true" not-null="true"/>
+		<property name="datatype" type="char" length="1" />
+		<property name="datalength" type="integer" length="20" />
+		<property name="scale" type="short" length="6" />
+		<property name="codetype" type="char" length="1"/>
+		<property name="codeformat" type="string" length="20"/>
+		<property name="status" type="short" length="1"/>
+		<property name="govid" type="string" length="10" />
+		<property name="govyear" type="int" length="4" />
+		<property name="uuid" type="string" length="32" />
+		<property name="remark" type="string" />
+	</class>
+</hibernate-mapping>
