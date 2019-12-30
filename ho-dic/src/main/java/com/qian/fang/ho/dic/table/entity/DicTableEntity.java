@@ -267,5 +267,10 @@ public class DicTableEntity extends DicBaseEntity {
 		this.columns = columns;
 	}
 	
+	@Override
+	public String toString() {
+		DicTableEntity entity = new DicTableEntity();
+		return this.getFieldValueByName(entity) + super.toString();
+	}
 	
 }

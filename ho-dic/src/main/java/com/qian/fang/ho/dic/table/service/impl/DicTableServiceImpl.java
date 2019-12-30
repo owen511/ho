@@ -62,4 +62,8 @@ public class DicTableServiceImpl implements IDicTableService {
 		return dicTableBPO.updateTable(dicTable);
 	}
 
+	public List<DicTableEntity> findAllTables() {
+		return dicTableBPO.findAllTables();
+	}
+
 }

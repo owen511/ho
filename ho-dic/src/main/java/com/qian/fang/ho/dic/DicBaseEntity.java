@@ -42,4 +42,9 @@ public class DicBaseEntity extends HOBaseEntity {
 		this.version = version;
 	}
 
+	@Override
+	public String toString() {
+		DicBaseEntity entity = new DicBaseEntity();
+		return this.getFieldValueByName(entity) + super.toString();
+	}
 }

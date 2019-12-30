@@ -39,7 +39,7 @@ public interface IDicTableDAO {
 	 * 删除表注册(批量).
 	 * 
 	 * @param dicTables
-	 * @return
+	 * @return List<DicTableEntity>
 	 */
 	List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables);
 
@@ -47,7 +47,7 @@ public interface IDicTableDAO {
 	 * 修改表注册(批量).
 	 * 
 	 * @param dicTables
-	 * @return
+	 * @return List<DicTableEntity>
 	 */
 	List<DicTableEntity> updateTables(List<DicTableEntity> dicTables);
 
@@ -55,8 +55,21 @@ public interface IDicTableDAO {
 	 * 修改表注册.
 	 * 
 	 * @param dicTable
-	 * @return
+	 * @return DicTableEntity
 	 */
 	DicTableEntity updateTable(DicTableEntity dicTable);
+	
+	/**
+	 * 查找所有表.
+	 * @return List<DicTableEntity>
+	 */
+	List<DicTableEntity> findAllTables();
+	
+	/**
+	 * 根据表编码查找表.
+	 * @param tablecode 表编码
+	 * @return DicTableEntity
+	 */
+	DicTableEntity findTableByCode(String tablecode);
 
 }

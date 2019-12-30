@@ -43,4 +43,12 @@ public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntit
 		return this.update(dicTable);
 	}
 
+	public List<DicTableEntity> findAllTables() {
+		return this.findAll("from DicTableEntity");
+	}
+
+	public DicTableEntity findTableByCode(String tablecode) {
+		return null;
+	}
+
 }

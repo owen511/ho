@@ -54,4 +54,6 @@ public interface IDicTableService {
 	 * @return
 	 */
 	DicTableEntity updateTable(DicTableEntity dicTable);
+	
+	List<DicTableEntity> findAllTables();
 }

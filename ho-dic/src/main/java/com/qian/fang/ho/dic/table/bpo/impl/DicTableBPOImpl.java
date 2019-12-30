@@ -60,4 +60,8 @@ public class DicTableBPOImpl implements IDicTableBPO {
 		return dicTableDAO.updateTable(dicTable);
 	}
 
+	public List<DicTableEntity> findAllTables() {
+		return dicTableDAO.findAllTables();
+	}
+
 }
