@@ -5,7 +5,6 @@
  * @Revision History:
  * @Revision 1.0 2019年11月24日  owen
  */
- 
 
 package com.qian.fang.ho.dic.table.dao;
 
@@ -15,6 +14,7 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 数据访问接口.
+ * 
  * @ClassName: IDicTableDAO
  * @Description: Description of this class
  * @author owen 于 2019年11月24日 下午3:08:59
@@ -22,15 +22,41 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 public interface IDicTableDAO {
 	/**
-	 * 表注册.
-	 * @param dicTableEntity
+	 * 新增表注册.
+	 * 
+	 * @param dicTable
 	 */
-	void addDicTable(DicTableEntity dicTableEntity);
-	
+	void addDicTable(DicTableEntity dicTable);
+
 	/**
-	 * 表注册(批量).
-	 * @param dicTableEntityLists
+	 * 新增表注册(批量).
+	 * 
+	 * @param dicTables
 	 */
-	void addDicTable(List<DicTableEntity> dicTableEntityLists);
+	void addDicTables(List<DicTableEntity> dicTables);
+
+	/**
+	 * 删除表注册(批量).
+	 * 
+	 * @param dicTables
+	 * @return
+	 */
+	List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables);
+
+	/**
+	 * 修改表注册(批量).
+	 * 
+	 * @param dicTables
+	 * @return
+	 */
+	List<DicTableEntity> updateTables(List<DicTableEntity> dicTables);
+
+	/**
+	 * 修改表注册.
+	 * 
+	 * @param dicTable
+	 * @return
+	 */
+	DicTableEntity updateTable(DicTableEntity dicTable);
 
 }

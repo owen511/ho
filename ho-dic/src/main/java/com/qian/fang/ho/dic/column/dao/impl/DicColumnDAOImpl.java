@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.column.dao.impl;
 
+import java.util.List;
+
 import com.qian.fang.ho.common.dao.impl.CommonHibernateDaoSupportImpl;
 import com.qian.fang.ho.dic.column.dao.IDicColumnDAO;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
@@ -20,10 +22,26 @@ import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
  * @author owen 于 2019年11月25日 下午11:07:48
  */
 
-public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl implements IDicColumnDAO {
+public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEntity> implements IDicColumnDAO {
 	
-	public void saveDicColumn(DicColumnEntity dicColumnEntity) {
-		this.getHibernateTemplate().save(dicColumnEntity);
+	public void addDicColumn(DicColumnEntity dicColumn) {
+		this.save(dicColumn);
+	}
+
+	public void addDicColumns(List<DicColumnEntity> dicColumns) {
+		this.save(dicColumns);		
+	}
+
+	public List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns) {
+		return this.delete(dicColumns);
+	}
+
+	public List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns) {
+		return this.update(dicColumns);
+	}
+
+	public void updateColumn(DicColumnEntity dicColumn) {
+		this.update(dicColumn);
 	}
 
 }

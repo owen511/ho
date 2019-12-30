@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.table.service.impl;
 
+import java.util.List;
+
 import com.qian.fang.ho.dic.table.bpo.IDicTableBPO;
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 import com.qian.fang.ho.dic.table.service.IDicTableService;
@@ -42,6 +44,22 @@ public class DicTableServiceImpl implements IDicTableService {
 
 	public void addDicTable(DicTableEntity dicTableEntity) {
 		dicTableBPO.addDicTable(dicTableEntity);
+	}
+
+	public void addDicTables(List<DicTableEntity> dicTables) {
+		dicTableBPO.addDicTables(dicTables);
+	}
+
+	public List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables) {
+		return dicTableBPO.deleteTables(dicTables);
+	}
+
+	public List<DicTableEntity> updateTables(List<DicTableEntity> dicTables) {
+		return dicTableBPO.updateTables(dicTables);
+	}
+
+	public DicTableEntity updateTable(DicTableEntity dicTable) {
+		return dicTableBPO.updateTable(dicTable);
 	}
 
 }

@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.column.service;
 
+import java.util.List;
+
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
 
 /**
@@ -22,8 +24,34 @@ public interface IDicColumnService {
 	
 	/**
 	 ** 新增表字段.
-	 * @param dicColumnEntity 表字段实体类.
+	 * @param dicColumn 表字段实体类.
 	 */
-	void saveDicColumn(DicColumnEntity dicColumnEntity);
+	void addDicColumn(DicColumnEntity dicColumn);
+	
+	/**
+	 * 新增表字段.
+	 * @param dicColumns
+	 */
+	void addDicColumns(List<DicColumnEntity> dicColumns);
+	
+	/**
+	 * 删除表字段.
+	 * @param dicColumns
+	 * @return
+	 */
+	List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns);
+	
+	/**
+	 * 修改表字段.
+	 * @param dicColumns
+	 * @return
+	 */
+	List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns);
+	
+	/**
+	 * 修改表字段.
+	 * @param dicColumn
+	 */
+	void updateColumn(DicColumnEntity dicColumn);
 
 }

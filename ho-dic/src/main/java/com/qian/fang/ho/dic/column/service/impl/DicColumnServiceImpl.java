@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.column.service.impl;
 
+import java.util.List;
+
 import com.qian.fang.ho.dic.column.bpo.IDicColumnBPO;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
 import com.qian.fang.ho.dic.column.service.IDicColumnService;
@@ -38,8 +40,24 @@ public class DicColumnServiceImpl implements IDicColumnService {
 		this.dicColumnBPO = dicColumnBPO;
 	}
 
-	public void saveDicColumn(DicColumnEntity dicColumnEntity) {
-		dicColumnBPO.saveDicColumn(dicColumnEntity);		
+	public void addDicColumn(DicColumnEntity dicColumn) {
+		dicColumnBPO.addDicColumn(dicColumn);		
+	}
+
+	public void addDicColumns(List<DicColumnEntity> dicColumns) {
+		dicColumnBPO.addDicColumns(dicColumns);
+	}
+
+	public List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns) {
+		return dicColumnBPO.deleteColumns(dicColumns);
+	}
+
+	public List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns) {
+		return dicColumnBPO.updateColumns(dicColumns);
+	}
+
+	public void updateColumn(DicColumnEntity dicColumn) {
+		dicColumnBPO.updateColumn(dicColumn);
 	}
 	
 }

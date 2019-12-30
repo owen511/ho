@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.table.bpo.impl;
 
+import java.util.List;
+
 import com.qian.fang.ho.dic.table.bpo.IDicTableBPO;
 import com.qian.fang.ho.dic.table.dao.IDicTableDAO;
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
@@ -38,8 +40,24 @@ public class DicTableBPOImpl implements IDicTableBPO {
 		this.dicTableDAO = dicTableDAO;
 	}
 
-	public void addDicTable(DicTableEntity dicTableEntity) {
-		dicTableDAO.addDicTable(dicTableEntity);
+	public void addDicTable(DicTableEntity dicTable) {
+		dicTableDAO.addDicTable(dicTable);
+	}
+
+	public void addDicTables(List<DicTableEntity> dicTables) {
+		dicTableDAO.addDicTables(dicTables);
+	}
+
+	public List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables) {
+		return dicTableDAO.deleteTables(dicTables);
+	}
+
+	public List<DicTableEntity> updateTables(List<DicTableEntity> dicTables) {
+		return dicTableDAO.updateTables(dicTables);
+	}
+
+	public DicTableEntity updateTable(DicTableEntity dicTable) {
+		return dicTableDAO.updateTable(dicTable);
 	}
 
 }

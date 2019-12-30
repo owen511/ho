@@ -21,16 +21,26 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
  * @author owen 于 2019年11月24日 下午3:11:14
  */
 
-public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl implements IDicTableDAO {
+public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntity> implements IDicTableDAO {
 
-	public void addDicTable(DicTableEntity dicTableEntity) {
-		this.getHibernateTemplate().save(dicTableEntity);
+	public void addDicTable(DicTableEntity dicTable) {
+		this.save(dicTable);
 	}
 
-	public void addDicTable(List<DicTableEntity> dicTableEntityLists) {
-		for (DicTableEntity dicTableEntity : dicTableEntityLists) {
-			this.getHibernateTemplate().save(dicTableEntity);
-		}
+	public void addDicTables(List<DicTableEntity> dicTables) {
+		this.save(dicTables);
+	}
+
+	public List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables) {
+		return this.delete(dicTables);
+	}
+
+	public List<DicTableEntity> updateTables(List<DicTableEntity> dicTables) {
+		return this.update(dicTables);
+	}
+
+	public DicTableEntity updateTable(DicTableEntity dicTable) {
+		return this.update(dicTable);
 	}
 
 }

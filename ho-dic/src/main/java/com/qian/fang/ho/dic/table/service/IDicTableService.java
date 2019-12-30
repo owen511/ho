@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.table.service;
 
+import java.util.List;
+
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
@@ -21,8 +23,35 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 public interface IDicTableService {
 
 	/**
-	 * 	表注册.
-	 * @param dicTableEntity 业务实体.
+	 * 新增表注册.
+	 * @param dicTable
 	 */
-	void addDicTable(DicTableEntity dicTableEntity);
+	void addDicTable(DicTableEntity dicTable);
+	
+	/**
+	 * 新增表注册(批量).
+	 * @param dicTables
+	 */
+	void addDicTables(List<DicTableEntity> dicTables);
+	
+	/**
+	 * 删除表注册(批量).
+	 * @param dicTables
+	 * @return
+	 */
+	List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables); 
+	
+	/**
+	 * 修改表注册(批量).
+	 * @param dicTables
+	 * @return
+	 */
+	List<DicTableEntity> updateTables(List<DicTableEntity> dicTables);
+	
+	/**
+	 * 修改表注册.
+	 * @param dicTable
+	 * @return
+	 */
+	DicTableEntity updateTable(DicTableEntity dicTable);
 }
