@@ -21,12 +21,12 @@ import java.util.List;
 public interface ICommonHibernateDaoSupport<T> {
 	
 	/**
-	 * 清空.
+	 * 清除session.
 	 */
 	void clear();
 	
 	/**
-	 * 清空.
+	 * 强制提交刷新session.
 	 */
 	void flush();
 	
@@ -62,5 +62,9 @@ public interface ICommonHibernateDaoSupport<T> {
 	 * @return
 	 */
 	T update(T t);
-
+	
+	List<T> findAll(String hql);
+	
+	List<T> find(T t);
+	
 }

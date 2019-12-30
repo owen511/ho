@@ -67,4 +67,19 @@ public class CommonHibernateDaoSupportImpl<T> extends HibernateDaoSupport implem
 		return t;
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	public List<T> findAll(String hql) {
+		return (List<T>) this.getHibernateTemplate().find(hql, new Object[] {});
+	}
+
+	public List<T> find(T t) {
+		return null;
+	}
+
+	public List<T> find(String hql) {
+		return null;
+	}
+
+
+
 }
