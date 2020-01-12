@@ -64,4 +64,8 @@ public class DicTableBPOImpl implements IDicTableBPO {
 		return dicTableDAO.findAllTables();
 	}
 
+	public DicTableEntity findTableByCode(String tablecode) {
+		return dicTableDAO.findTableByCode(tablecode);
+	}
+
 }

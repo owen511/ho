@@ -55,5 +55,16 @@ public interface IDicTableService {
 	 */
 	DicTableEntity updateTable(DicTableEntity dicTable);
 	
+	/**
+	 * 查找所有表.
+	 * @return
+	 */
 	List<DicTableEntity> findAllTables();
+	
+	/**
+	 * 查找表.
+	 * @param tablecode 表编码
+	 * @return
+	 */
+	DicTableEntity findTableByCode(String tablecode);
 }

@@ -66,4 +66,8 @@ public class DicTableServiceImpl implements IDicTableService {
 		return dicTableBPO.findAllTables();
 	}
 
+	public DicTableEntity findTableByCode(String tablecode) {
+		return  dicTableBPO.findTableByCode(tablecode);
+	}
+
 }

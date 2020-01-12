@@ -14,8 +14,8 @@
 			<one-to-many class="com.qian.fang.ho.dic.column.entity.DicColumnEntity" />
 		</set>
 		<property name="tablecode" type="string" length="32" unique="true" not-null="true" />
-		<property name="name" type="string" length="32" />
-		<property name="tabletype" type="char" length="1" />
+		<property name="name" type="string" length="32" unique="true" not-null="true"/>
+		<property name="tabletype" type="char" length="1" not-null="true"/>
 		<property name="keycolumn" type="string" length="32" />
 		<property name="codecolumn" type="string" length="32" />
 		<property name="namecolumn" type="string" length="32" />
