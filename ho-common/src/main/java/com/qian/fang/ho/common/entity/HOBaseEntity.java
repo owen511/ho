@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.UUID;
 
 /**
  * 公共底层实体类.
@@ -46,7 +45,6 @@ public class HOBaseEntity implements Serializable {
 	 * @return uuid
 	 */
 	public String getUuid() {
-		uuid = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
 		return uuid;
 	}
 

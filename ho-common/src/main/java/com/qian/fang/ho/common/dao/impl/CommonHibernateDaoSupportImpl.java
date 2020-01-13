@@ -9,12 +9,16 @@
 
 package com.qian.fang.ho.common.dao.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.qian.fang.ho.common.dao.ICommonHibernateDaoSupport;
+import com.qian.fang.ho.common.entity.HOBaseEntity;
+import com.qian.fang.ho.common.uitl.DateFormatUtil;
 
 /**
  * 公共数据访问实现类.
@@ -24,62 +28,79 @@ import com.qian.fang.ho.common.dao.ICommonHibernateDaoSupport;
  * @param <T>
  */
 
-public class CommonHibernateDaoSupportImpl<T> extends HibernateDaoSupport implements ICommonHibernateDaoSupport<T>{
+public class CommonHibernateDaoSupportImpl<T extends HOBaseEntity> extends HibernateDaoSupport implements ICommonHibernateDaoSupport<T>{
 
 	public void clear() {
-		this.getHibernateTemplate().clear();
+		getHibernateTemplate().clear();
 	}
 	
 	public void flush() {
-		this.getHibernateTemplate().flush();;
+		getHibernateTemplate().flush();;
+	}
+	
+	/**
+	 * 生成UUID.
+	 * @return
+	 */
+	private String getRandomUUID() {
+		return UUID.randomUUID().toString().toUpperCase().replaceAll("-", "");
 	}
 
 	public void save(T t) {
-		this.getHibernateTemplate().save(t);
+		t.setuuid(getRandomUUID());
+		t.setGovyear(DateFormatUtil.getYear());
+		getHibernateTemplate().save(t);
 	}
 
 	public void save(List<T> ts) {
 		for(T t : ts) {
-			this.getHibernateTemplate().save(t);
+			save(t);
 		}
 	}
 
 	public List<T> delete(List<T> ts) {
-		this.clear();
-		this.flush();
-		this.getHibernateTemplate().deleteAll(ts);
+		clear();
+		flush();
+		getHibernateTemplate().deleteAll(ts);
 		return ts;
 	}
 
 	public List<T> update(List<T> ts) {
 		List<T> result = new ArrayList<T>();
-		this.clear();
-		this.flush();
+		clear();
+		flush();
 		for (T t : ts) {
-			this.getHibernateTemplate().update(t);
+			update(t);
 			result.add(t);
 		}
 		return result;
 	}
 
 	public T update(T t) {
-		this.getHibernateTemplate().update(t);
+		getHibernateTemplate().update(t);
 		return t;
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<T> findAll(String hql) {
-		return (List<T>) this.getHibernateTemplate().find(hql, new Object[] {});
+		return find(hql, new Object[] {});
 	}
 
 	public List<T> find(T t) {
-		return null;
+		return getHibernateTemplate().findByExample(t);
 	}
 
-	public List<T> find(String hql) {
-		return null;
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	public List<T> find(String hql, Object... values) {
+		return (List<T>) getHibernateTemplate().find(hql, values);
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public T findById(T t, Serializable id) {
+		return (T) getHibernateTemplate().get(t.getClass(), id);
 	}
 
+	
 
 
 }

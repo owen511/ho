@@ -9,7 +9,10 @@
 
 package com.qian.fang.ho.common.dao;
 
+import java.io.Serializable;
 import java.util.List;
+
+import com.qian.fang.ho.common.entity.HOBaseEntity;
 
 /**
  * 公共数据访问接口.
@@ -18,7 +21,7 @@ import java.util.List;
  * @author owen 于 2019年11月25日 下午2:00:59
  */
 
-public interface ICommonHibernateDaoSupport<T> {
+public interface ICommonHibernateDaoSupport<T extends HOBaseEntity> {
 	
 	/**
 	 * 清除session.
@@ -63,8 +66,34 @@ public interface ICommonHibernateDaoSupport<T> {
 	 */
 	T update(T t);
 	
+	/**
+	 * 查找所有.
+	 * @param hql
+	 * @return
+	 */
 	List<T> findAll(String hql);
 	
+	/**
+	 * 查找.
+	 * @param hql
+	 * @param values 参数值.
+	 * @return
+	 */
+	List<T> find(String hql, Object... values);
+	
+	/**
+	 * 查找.
+	 * @param t
+	 * @return
+	 */
 	List<T> find(T t);
+	
+	/**
+	 * 查询.
+	 * @param t
+	 * @param id 序列化实体唯一值(PK)
+	 * @return
+	 */
+	T findById(T t,Serializable id);
 	
 }
