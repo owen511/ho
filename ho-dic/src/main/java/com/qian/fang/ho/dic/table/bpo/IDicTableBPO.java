@@ -67,4 +67,12 @@ public interface IDicTableBPO {
 	 * @return
 	 */
 	DicTableEntity findTableByCode(String tablecode);
+	
+	/**
+	 * 根据表 pk ID查找
+	 * @param entity 实体实例.
+	 * @param pkId
+	 * @return DicTableEntity
+	 */
+	DicTableEntity findTableById(DicTableEntity entity,int pkId);
 }

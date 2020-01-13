@@ -70,4 +70,8 @@ public class DicTableServiceImpl implements IDicTableService {
 		return  dicTableBPO.findTableByCode(tablecode);
 	}
 
+	public DicTableEntity findTableById(DicTableEntity entity, int pkId) {
+		return dicTableBPO.findTableById(entity, pkId);
+	}
+
 }

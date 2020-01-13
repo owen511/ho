@@ -47,14 +47,20 @@ public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntit
 		return this.findAll("from DicTableEntity");
 	}
 
-	public DicTableEntity findTableById(DicTableEntity entity , String id) {
-		this.findById(t, id)
-		return this.findById(entity, id);
+	public DicTableEntity findTableById(DicTableEntity entity , int pkId) {
+		return this.findById(entity, pkId);
 	}
 
 	public DicTableEntity findTableByCode(String tablecode) {
-		// TODO Auto-generated method stub
-		return null;
+		// hibernate5 使用占位符时，需要标明参数序号，从0开始:eg: ?0,?1
+		List<DicTableEntity> result = this.find("from DicTableEntity where tablecode=?0",
+				new Object[] { tablecode.toUpperCase() });
+		if (result.isEmpty()) {
+			System.out.println("按条件tablecode=" + tablecode.toUpperCase() + ",没有找到符合的数据......");
+			return new DicTableEntity();
+		} else {
+			return result.get(0);
+		}
 	}
 
 }

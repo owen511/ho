@@ -78,6 +78,6 @@ public interface IDicTableDAO {
 	 * @param id
 	 * @return DicTableEntity
 	 */
-	DicTableEntity findTableById(DicTableEntity entity,String id);
+	DicTableEntity findTableById(DicTableEntity entity,int pkId);
 
 }
