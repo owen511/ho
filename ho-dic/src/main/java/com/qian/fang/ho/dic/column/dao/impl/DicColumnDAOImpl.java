@@ -24,11 +24,11 @@ import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
 
 public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEntity> implements IDicColumnDAO {
 	
-	public void addDicColumn(DicColumnEntity dicColumn) {
+	public void addColumn(DicColumnEntity dicColumn) {
 		this.save(dicColumn);
 	}
 
-	public void addDicColumns(List<DicColumnEntity> dicColumns) {
+	public void addColumns(List<DicColumnEntity> dicColumns) {
 		this.save(dicColumns);		
 	}
 
@@ -40,8 +40,27 @@ public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEnt
 		return this.update(dicColumns);
 	}
 
-	public void updateColumn(DicColumnEntity dicColumn) {
-		this.update(dicColumn);
+	public DicColumnEntity updateColumn(DicColumnEntity dicColumn) {
+		return this.update(dicColumn);
+	}
+
+	public List<DicColumnEntity> findAllColumns() {
+		return this.findAll("from DicColumnEntity");
+	}
+
+	public DicColumnEntity findColumnByCode(String columnCode) {
+		List<DicColumnEntity> result = this.find("from DicColumnEntity where columncode=?0",
+				new Object[] { columnCode.toUpperCase() });
+		if (result.isEmpty()) {
+			System.out.println("按条件columncode=" + columnCode.toUpperCase() + ",没有找到符合的数据......");
+			return new DicColumnEntity();
+		} else {
+			return result.get(0);
+		}
+	}
+
+	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {
+		return this.findById(entity, pkId);
 	}
 
 }

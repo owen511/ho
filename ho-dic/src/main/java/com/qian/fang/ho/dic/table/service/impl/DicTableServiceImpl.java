@@ -42,12 +42,12 @@ public class DicTableServiceImpl implements IDicTableService {
 		this.dicTableBPO = dicTableBPO;
 	}
 
-	public void addDicTable(DicTableEntity dicTableEntity) {
-		dicTableBPO.addDicTable(dicTableEntity);
+	public void addTable(DicTableEntity dicTableEntity) {
+		dicTableBPO.addTable(dicTableEntity);
 	}
 
-	public void addDicTables(List<DicTableEntity> dicTables) {
-		dicTableBPO.addDicTables(dicTables);
+	public void addTables(List<DicTableEntity> dicTables) {
+		dicTableBPO.addTables(dicTables);
 	}
 
 	public List<DicTableEntity> deleteTables(List<DicTableEntity> dicTables) {
@@ -66,8 +66,8 @@ public class DicTableServiceImpl implements IDicTableService {
 		return dicTableBPO.findAllTables();
 	}
 
-	public DicTableEntity findTableByCode(String tablecode) {
-		return  dicTableBPO.findTableByCode(tablecode);
+	public DicTableEntity findTableByCode(String tableCode) {
+		return  dicTableBPO.findTableByCode(tableCode);
 	}
 
 	public DicTableEntity findTableById(DicTableEntity entity, int pkId) {

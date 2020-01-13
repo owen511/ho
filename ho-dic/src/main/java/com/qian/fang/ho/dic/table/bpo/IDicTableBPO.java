@@ -26,13 +26,13 @@ public interface IDicTableBPO {
 	 * 新增表注册.
 	 * @param dicTable
 	 */
-	void addDicTable(DicTableEntity dicTable);
+	void addTable(DicTableEntity dicTable);
 	
 	/**
 	 * 新增表注册(批量).
 	 * @param dicTables
 	 */
-	void addDicTables(List<DicTableEntity> dicTables);
+	void addTables(List<DicTableEntity> dicTables);
 	
 	/**
 	 * 删除表注册(批量).
@@ -63,10 +63,10 @@ public interface IDicTableBPO {
 	
 	/**
 	 * 查找表.
-	 * @param tablecode 表编码
+	 * @param tableCode 表编码
 	 * @return
 	 */
-	DicTableEntity findTableByCode(String tablecode);
+	DicTableEntity findTableByCode(String tableCode);
 	
 	/**
 	 * 根据表 pk ID查找

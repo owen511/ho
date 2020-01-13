@@ -1,5 +1,6 @@
 package com.qian.fang.ho.dic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -31,20 +32,40 @@ public class DicTableOrColumnServiceImplTest extends TestCase {
 	 * 新增表.
 	 */
 //	public void testAddDicTable() {
+//		List<DicTableEntity> dicTables = new ArrayList<DicTableEntity>();
 //		DicTableEntity dicTableEntity = new DicTableEntity();
-//		dicTableEntity.setTablecode("aaa5");
+//		dicTableEntity.setTablecode("AAAAAA");
+//		dicTableEntity.setName("阿来得快");
 //		dicTableEntity.setGovid("122");
-//		dicTableEntity.setGovyear(2019);
 //		dicTableEntity.setRemark("a1");
 //		dicTableEntity.setTabletype(TableTypeEnum.LOGICAL_TABLE.getType());
-//		tableService.addDicTable(dicTableEntity);
+//		
+//		//tableService.addDicTable(dicTableEntity);
+//		dicTables.add(dicTableEntity);
+//		DicTableEntity dicTableEntity2 = new DicTableEntity();
+//		dicTableEntity2.setTablecode("BBBB");
+//		dicTableEntity2.setName("阿来得快");
+//		dicTableEntity2.setGovid("122");
+//		dicTableEntity2.setRemark("a1");
+//		dicTableEntity2.setTabletype(TableTypeEnum.LOGICAL_TABLE.getType());
+//		dicTables.add(dicTableEntity2);
+//		tableService.addDicTables(dicTables);
 //		
 //		DicColumnEntity dicColumnEntity = new DicColumnEntity();
 //		dicColumnEntity.setTableEntity(dicTableEntity);
 //		dicColumnEntity.setColumncode("lsakd5");
 //		dicColumnEntity.setGovid(dicTableEntity.getGovid());
-//		dicColumnEntity.setGovyear(dicTableEntity.getGovyear());
-//		columnService.addDicColumn(dicColumnEntity);
+//		//columnService.addDicColumn(dicColumnEntity);
+//		
+//		DicColumnEntity dicColumnEntity2 = new DicColumnEntity();
+//		dicColumnEntity2.setTableEntity(dicTableEntity2);
+//		dicColumnEntity2.setColumncode("lsakdt");
+//		dicColumnEntity2.setGovid(dicTableEntity2.getGovid());
+//		
+//		List<DicColumnEntity> dicColumns = new ArrayList<DicColumnEntity>();
+//		dicColumns.add(dicColumnEntity);
+//		dicColumns.add(dicColumnEntity2);
+//		columnService.addDicColumns(dicColumns);
 //	}
 
 
@@ -57,15 +78,52 @@ public class DicTableOrColumnServiceImplTest extends TestCase {
 //		for (DicTableEntity dicTableEntity : list) {
 //			System.out.println(dicTableEntity.getTablecode());
 //		}
-//	}
-	
-	public void testFindDicTableBycode() {
-		DicTableEntity entity =tableService.findTableByCode("aaa4");
-		System.out.println(entity.getUuid()+"==uuid");
-	}
-
-//	public void testDeleteDicTable() {
 //
 //	}
+	
+//	public void testFindDicTableBycode() {
+//		DicTableEntity entity =tableService.findTableByCode("bbbbb");
+//		System.out.println(entity.getUuid()+"==uuid");
+//	}
+	
+//	public void testFindDicTableById() {
+//		DicTableEntity entity = new DicTableEntity();
+//		entity =tableService.findTableById(entity, 57);
+//		System.out.println(entity.getUuid()+"==uuid");
+//	}
+	
+//	public void testUpdateDicTable() {
+//		List<DicTableEntity> dicTables = new ArrayList<DicTableEntity>();
+//		dicTables = tableService.findAllTables();
+//		int i=0;
+//		for (DicTableEntity dicTableEntity : dicTables) {
+//			System.out.println(dicTableEntity.getTablecode()+"-"+dicTableEntity.getName());
+//			dicTableEntity.setName(dicTableEntity.getName()+i);
+//			i++;
+//			
+//		}
+//		dicTables=tableService.updateTables(dicTables);
+//		for (DicTableEntity dicTableEntity : dicTables) {
+//			System.out.println(dicTableEntity.getTablecode()+"-"+dicTableEntity.getName());
+//			
+//		}
+//	}
+
+	public void testDeleteDicTable() {
+		List<DicTableEntity> dicTables = new ArrayList<DicTableEntity>();
+		dicTables = tableService.findAllTables();
+		int i=0;
+		for (DicTableEntity dicTableEntity : dicTables) {
+			System.out.println(dicTableEntity.getTablecode()+"-"+dicTableEntity.getName());
+			dicTableEntity.setName(dicTableEntity.getName()+i);
+			i++;
+			
+		}
+		dicTables=tableService.deleteTables(dicTables);
+		for (DicTableEntity dicTableEntity : dicTables) {
+			System.out.println(dicTableEntity.getTablecode()+"-"+dicTableEntity.getName());
+			
+		}
+	}
 
 }

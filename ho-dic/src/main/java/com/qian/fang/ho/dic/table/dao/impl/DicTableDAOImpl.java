@@ -23,11 +23,11 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntity> implements IDicTableDAO {
 
-	public void addDicTable(DicTableEntity dicTable) {
+	public void addTable(DicTableEntity dicTable) {
 		this.save(dicTable);
 	}
 
-	public void addDicTables(List<DicTableEntity> dicTables) {
+	public void addTables(List<DicTableEntity> dicTables) {
 		this.save(dicTables);
 	}
 
@@ -51,12 +51,12 @@ public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntit
 		return this.findById(entity, pkId);
 	}
 
-	public DicTableEntity findTableByCode(String tablecode) {
+	public DicTableEntity findTableByCode(String tableCode) {
 		// hibernate5 使用占位符时，需要标明参数序号，从0开始:eg: ?0,?1
 		List<DicTableEntity> result = this.find("from DicTableEntity where tablecode=?0",
-				new Object[] { tablecode.toUpperCase() });
+				new Object[] { tableCode.toUpperCase() });
 		if (result.isEmpty()) {
-			System.out.println("按条件tablecode=" + tablecode.toUpperCase() + ",没有找到符合的数据......");
+			System.out.println("按条件tablecode=" + tableCode.toUpperCase() + ",没有找到符合的数据......");
 			return new DicTableEntity();
 		} else {
 			return result.get(0);

@@ -22,17 +22,18 @@ import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
 
 public interface IDicColumnService {
 	
+	
 	/**
 	 ** 新增表字段.
 	 * @param dicColumn 表字段实体类.
 	 */
-	void addDicColumn(DicColumnEntity dicColumn);
+	void addColumn(DicColumnEntity dicColumn);
 	
 	/**
 	 * 新增表字段.
 	 * @param dicColumns
 	 */
-	void addDicColumns(List<DicColumnEntity> dicColumns);
+	void addColumns(List<DicColumnEntity> dicColumns);
 	
 	/**
 	 * 删除表字段.
@@ -51,7 +52,29 @@ public interface IDicColumnService {
 	/**
 	 * 修改表字段.
 	 * @param dicColumn
+	 * @return
 	 */
-	void updateColumn(DicColumnEntity dicColumn);
+	DicColumnEntity updateColumn(DicColumnEntity dicColumn);
+	
+	/**
+	 * 查找所有表字段.
+	 * @return List<DicTableEntity>
+	 */
+	List<DicColumnEntity> findAllColumns();
+	
+	/**
+	 * 根据表字段编码查找表.
+	 * @param columnCode 表字段编码
+	 * @return DicColumnEntity
+	 */
+	DicColumnEntity findColumnByCode(String columnCode);
+	
+	/**
+	 * 根据表字段 pk ID查找
+	 * @param entity 实体实例.
+	 * @param id
+	 * @return DicColumnEntity
+	 */
+	DicColumnEntity findColumnById(DicColumnEntity entity,int pkId);
 
 }
