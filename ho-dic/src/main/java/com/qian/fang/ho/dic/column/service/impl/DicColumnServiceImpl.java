@@ -41,11 +41,11 @@ public class DicColumnServiceImpl implements IDicColumnService {
 	}
 
 	public void addColumn(DicColumnEntity dicColumn) {
-		this.addColumn(dicColumn);
+		this.dicColumnBPO.addColumn(dicColumn);
 	}
 
 	public void addColumns(List<DicColumnEntity> dicColumns) {
-		this.addColumns(dicColumns);
+		this.dicColumnBPO.addColumns(dicColumns);
 	}
 
 	public List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns) {
@@ -53,23 +53,23 @@ public class DicColumnServiceImpl implements IDicColumnService {
 	}
 
 	public List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns) {
-		return this.updateColumns(dicColumns);
+		return this.dicColumnBPO.updateColumns(dicColumns);
 	}
 
 	public DicColumnEntity updateColumn(DicColumnEntity dicColumn) {
-		return this.updateColumn(dicColumn);
+		return this.dicColumnBPO.updateColumn(dicColumn);
 	}
 
 	public List<DicColumnEntity> findAllColumns() {
-		return this.findAllColumns();
+		return this.dicColumnBPO.findAllColumns();
 	}
 
 	public DicColumnEntity findColumnByCode(String columnCode) {
-		return this.findColumnByCode(columnCode);
+		return this.dicColumnBPO.findColumnByCode(columnCode);
 	}
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {
-		return this.findColumnById(entity, pkId);
+		return this.dicColumnBPO.findColumnById(entity, pkId);
 	}
 
 

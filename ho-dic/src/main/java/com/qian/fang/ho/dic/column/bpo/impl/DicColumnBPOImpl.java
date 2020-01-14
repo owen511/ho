@@ -64,8 +64,8 @@ public class DicColumnBPOImpl implements IDicColumnBPO {
 		return this.findAllColumns();
 	}
 
-	public DicColumnEntity findColumnByCode(String columnCode) {
-		return this.findColumnByCode(columnCode);
+	public DicColumnEntity findColumnByCode(String columncode) {
+		return this.findColumnByCode(columncode);
 	}
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {

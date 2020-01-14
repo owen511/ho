@@ -63,10 +63,10 @@ public interface IDicTableService {
 	
 	/**
 	 * 查找表.
-	 * @param tableCode 表编码
+	 * @param tablecode 表编码
 	 * @return
 	 */
-	DicTableEntity findTableByCode(String tableCode);
+	DicTableEntity findTableByCode(String tablecode);
 	
 	/**
 	 * 根据表 pk ID查找

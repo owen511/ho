@@ -52,15 +52,8 @@ public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntit
 	}
 
 	public DicTableEntity findTableByCode(String tableCode) {
-		// hibernate5 使用占位符时，需要标明参数序号，从0开始:eg: ?0,?1
-		List<DicTableEntity> result = this.find("from DicTableEntity where tablecode=?0",
-				new Object[] { tableCode.toUpperCase() });
-		if (result.isEmpty()) {
-			System.out.println("按条件tablecode=" + tableCode.toUpperCase() + ",没有找到符合的数据......");
-			return new DicTableEntity();
-		} else {
-			return result.get(0);
-		}
+		DicTableEntity entity = new DicTableEntity();
+		return this.find(entity, "tablecode", tableCode);
 	}
 
 }
