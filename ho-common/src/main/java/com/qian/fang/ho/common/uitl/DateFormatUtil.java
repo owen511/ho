@@ -1,9 +1,9 @@
 /**
  * @Title: DateFormatUtil.java
- * @Copyright (C) 2020 Ç°·»Èí¼ş
+ * @Copyright (C) 2019 å‰åŠè½¯ä»¶
  * @Description:
  * @Revision History:
- * @Revision 1.0 2020Äê1ÔÂ13ÈÕ  owen
+ * @Revision 1.0 2020å¹´01æœˆ13æ—¥  owen
  */
 
 package com.qian.fang.ho.common.uitl;
@@ -12,9 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Ê±¼ä¸ñÊ½¹¤¾ßÀà.
+ ** æ—¥æœŸæ—¶é—´æ ¼å¼å·¥å…·ç±».
  *  
- * @author owen ÓÚ 2020Äê1ÔÂ13ÈÕ ÉÏÎç10:10:42
+ * @author owen äº 2020å¹´1æœˆ13æ—¥ ä¸Šåˆ10:10:42
  */
 
 public class DateFormatUtil {
@@ -39,7 +39,7 @@ public class DateFormatUtil {
 	}
 	
 	/**
-	 * »ñÈ¡µ±Ç°Äê¶È.
+	 * è·å–å¹´åº¦.
 	 * @return
 	 */
 	public static int getYear() {
