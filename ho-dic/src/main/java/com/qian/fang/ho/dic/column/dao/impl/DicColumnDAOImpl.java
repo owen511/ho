@@ -49,14 +49,8 @@ public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEnt
 	}
 
 	public DicColumnEntity findColumnByCode(String columnCode) {
-		List<DicColumnEntity> result = this.find("from DicColumnEntity where columncode=?0",
-				new Object[] { columnCode.toUpperCase() });
-		if (result.isEmpty()) {
-			System.out.println("按条件columncode=" + columnCode.toUpperCase() + ",没有找到符合的数据......");
-			return new DicColumnEntity();
-		} else {
-			return result.get(0);
-		}
+		DicColumnEntity entity = new DicColumnEntity();
+		return this.find(entity, "columncode", columnCode);
 	}
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {

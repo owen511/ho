@@ -48,14 +48,8 @@ public class DicElementDAOImpl extends CommonHibernateDaoSupportImpl<DicElementE
 	}
 
 	public DicElementEntity findElementByCode(String elementCode) {
-		List<DicElementEntity> result = this.find("from DicElementEntity where elementcode=?0",
-				new Object[] { elementCode.toUpperCase() });
-		if (result.isEmpty()) {
-			System.out.println("按条件elementcode=" + elementCode.toUpperCase() + ",没有找到符合的数据......");
-			return new DicElementEntity();
-		} else {
-			return result.get(0);
-		}
+		DicElementEntity entity = new DicElementEntity();
+		return this.find(entity, "elementcode", elementCode);
 	}
 
 	public DicElementEntity findElementById(DicElementEntity entity, int pkId) {

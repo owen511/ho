@@ -73,9 +73,9 @@ public interface IDicTableDAO {
 	DicTableEntity findTableByCode(String tableCode);
 	
 	/**
-	 * 根据表 pk ID查找
+	 * 根据表 pkId查找
 	 * @param entity 实体实例.
-	 * @param id
+	 * @param pkId
 	 * @return DicTableEntity
 	 */
 	DicTableEntity findTableById(DicTableEntity entity,int pkId);
