@@ -269,8 +269,7 @@ public class DicTableEntity extends DicBaseEntity {
 	
 	@Override
 	public String toString() {
-		DicTableEntity entity = new DicTableEntity();
-		return this.getFieldValueByName(entity) + super.toString();
+		return this.getFieldValueByName(this) + super.toString();
 	}
 	
 }

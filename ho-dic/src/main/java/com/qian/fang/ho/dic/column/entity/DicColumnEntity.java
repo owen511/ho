@@ -214,4 +214,8 @@ public class DicColumnEntity extends DicBaseEntity{
 		this.tableEntity = tableEntity;
 	}
 
+	@Override
+	public String toString() {
+		return this.getFieldValueByName(this) + super.toString();
+	}
 }

@@ -141,7 +141,8 @@ alter table T_HO_DICELEMENT
 alter table T_HO_DICELEMENT
   add constraint UK_T_HO_DICELEMENT_02 unique (ELEMENTCODE);
 alter table T_HO_DICELEMENT
-  add constraint FK_T_HO_DICELEMENT_DICTABLE foreign key (TABLEID);
+  add constraint FK_T_HO_DICELEMENT_DICTABLE foreign key (TABLEID) 
+  references T_HO_DICTABLE (TABLEID);;
 -- Add comments to the columns 
 comment on column T_HO_DICELEMENT.elementid
   is '要素PK';

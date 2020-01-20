@@ -9,7 +9,7 @@
 		</id>
 		<version column="version" name="version" type="int" />
 		<!-- 一对多关联映射配置 映射关键点: 1.指定映射的集合属性：columns 2.集合属性对应的集合表：t_ho_diccolumn 3.集合表的外键字段：t_ho_diccolumn.tableid 4.集合元素的类型 -->
-		<set name="columns" cascade="delete" table="t_ho_diccolumn">
+		<set name="columns" cascade="delete" table="t_ho_diccolumn" lazy="false">
 			<key column="tableid"></key>
 			<one-to-many class="com.qian.fang.ho.dic.column.entity.DicColumnEntity" />
 		</set>
