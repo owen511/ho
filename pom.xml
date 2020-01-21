@@ -17,7 +17,7 @@
 			 <mysqlVersion>5.1.38</mysqlVersion> 
 			 <junitVerion>3.8.1</junitVerion> 
 		-->
-		<springVersion>5.1.1.RELEASE</springVersion>
+		<springVersion>5.2.3.RELEASE</springVersion>
 		<hibernateVersion>5.3.6.Final</hibernateVersion>
 		<jstlVersion>1.2</jstlVersion>
 		<taglibVersion>1.1.2</taglibVersion>
