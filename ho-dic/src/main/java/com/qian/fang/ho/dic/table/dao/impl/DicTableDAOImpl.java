@@ -11,7 +11,7 @@ package com.qian.fang.ho.dic.table.dao.impl;
 
 import java.util.List;
 
-import com.qian.fang.ho.common.dao.impl.CommonHibernateDaoSupportImpl;
+import com.qian.fang.ho.dic.DicBaseCommonHibernateDaoSupportImpl;
 import com.qian.fang.ho.dic.table.dao.IDicTableDAO;
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
@@ -21,7 +21,7 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
  * @author owen 于 2019年11月24日 下午3:11:14
  */
 
-public class DicTableDAOImpl extends CommonHibernateDaoSupportImpl<DicTableEntity> implements IDicTableDAO {
+public class DicTableDAOImpl extends DicBaseCommonHibernateDaoSupportImpl<DicTableEntity> implements IDicTableDAO {
 
 	public void addTable(DicTableEntity dicTable) {
 		this.save(dicTable);

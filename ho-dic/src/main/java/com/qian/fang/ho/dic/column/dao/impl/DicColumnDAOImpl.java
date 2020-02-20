@@ -9,11 +9,13 @@
 
 package com.qian.fang.ho.dic.column.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.qian.fang.ho.common.dao.impl.CommonHibernateDaoSupportImpl;
+import com.qian.fang.ho.dic.DicBaseCommonHibernateDaoSupportImpl;
 import com.qian.fang.ho.dic.column.dao.IDicColumnDAO;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 表字段注册数据访问实现类.
@@ -22,7 +24,7 @@ import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
  * @author owen 于 2019年11月25日 下午11:07:48
  */
 
-public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEntity> implements IDicColumnDAO {
+public class DicColumnDAOImpl extends DicBaseCommonHibernateDaoSupportImpl<DicColumnEntity> implements IDicColumnDAO {
 	
 	public void addColumn(DicColumnEntity dicColumn) {
 		this.save(dicColumn);
@@ -55,6 +57,16 @@ public class DicColumnDAOImpl extends CommonHibernateDaoSupportImpl<DicColumnEnt
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {
 		return this.findById(entity, pkId);
+	}
+
+	public List<DicColumnEntity> findColumnsByTableFK(DicTableEntity table) {
+		List<DicColumnEntity> result = new ArrayList<DicColumnEntity>();
+		if (null == table) {
+			return result;
+		}
+		String hql = "from DicColumnEntity where tableid=" + table.getTableid();
+		result = findAll(hql);
+		return result;
 	}
 
 }

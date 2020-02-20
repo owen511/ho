@@ -12,6 +12,7 @@ package com.qian.fang.ho.dic.column.dao;
 import java.util.List;
 
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 表字段注册数据访问接口.
@@ -37,29 +38,36 @@ public interface IDicColumnDAO {
 	/**
 	 * 删除表字段.
 	 * @param dicColumns
-	 * @return
+	 * @return List<DicColumnEntity>
 	 */
 	List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns);
 	
 	/**
 	 * 修改表字段.
 	 * @param dicColumns
-	 * @return
+	 * @return List<DicColumnEntity>
 	 */
 	List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns);
 	
 	/**
 	 * 修改表字段.
 	 * @param dicColumn
-	 * @return
+	 * @return DicColumnEntity
 	 */
 	DicColumnEntity updateColumn(DicColumnEntity dicColumn);
 	
 	/**
 	 * 查找所有表字段.
-	 * @return List<DicTableEntity>
+	 * @return List<DicColumnEntity>
 	 */
 	List<DicColumnEntity> findAllColumns();
+	
+	/**
+	 * 根据外键FK查找某表字段(根据表ID，如果表实体类只有表编码，则会先根据表编码查找获取表ID).
+	 * @param table 表实体 
+	 * @return List<DicColumnEntity>
+	 */
+	List<DicColumnEntity> findColumnsByTableFK(DicTableEntity table);
 	
 	/**
 	 * 根据表字段编码查找表.

@@ -9,6 +9,7 @@
 
 package com.qian.fang.ho.dic.element.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.qian.fang.ho.dic.DicBaseEntity;
@@ -19,7 +20,7 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
  * @author owen 于 2019年11月26日 下午5:22:04
  */
 
-public class DicElementEntity extends DicBaseEntity {
+public class DicElementEntity extends DicBaseEntity implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : Description
@@ -40,10 +41,10 @@ public class DicElementEntity extends DicBaseEntity {
     private String datatype;
 
     //数据长度.
-    private short datalength;
+    private int datalength;
 
     //小数位数.
-    private short scale;
+    private int scale;
 
     //代码类型.
     private char codetype;
@@ -52,7 +53,7 @@ public class DicElementEntity extends DicBaseEntity {
     private String codeformat;
 
     //使用状态.
-    private short status;
+    private int status;
 
     //数据元类别 1-物理数据元2-逻辑数据元.
     private short elementtype;
@@ -66,7 +67,7 @@ public class DicElementEntity extends DicBaseEntity {
     //停用日期
     private Date enddate;
     
-    //数据源与表 多对一.
+    //数据源要素与表 多对一.
     private DicTableEntity tableEntity;
 
 	/**
@@ -128,28 +129,28 @@ public class DicElementEntity extends DicBaseEntity {
 	/**
 	 * @return datalength
 	 */
-	public short getDatalength() {
+	public int getDatalength() {
 		return datalength;
 	}
 
 	/**
 	 * @param datalength 要设置的 datalength
 	 */
-	public void setDatalength(short datalength) {
+	public void setDatalength(int datalength) {
 		this.datalength = datalength;
 	}
 
 	/**
 	 * @return scale
 	 */
-	public short getScale() {
+	public int getScale() {
 		return scale;
 	}
 
 	/**
 	 * @param scale 要设置的 scale
 	 */
-	public void setScale(short scale) {
+	public void setScale(int scale) {
 		this.scale = scale;
 	}
 
@@ -184,14 +185,14 @@ public class DicElementEntity extends DicBaseEntity {
 	/**
 	 * @return status
 	 */
-	public short getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status 要设置的 status
 	 */
-	public void setStatus(short status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -265,5 +266,10 @@ public class DicElementEntity extends DicBaseEntity {
 		this.tableEntity = tableEntity;
 	}
 
-    
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(this.getFieldValueByName());
+		return buffer.append(super.toString()).toString();
+	}
 }

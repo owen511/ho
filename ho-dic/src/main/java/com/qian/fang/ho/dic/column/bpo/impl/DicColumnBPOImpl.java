@@ -14,6 +14,7 @@ import java.util.List;
 import com.qian.fang.ho.dic.column.bpo.IDicColumnBPO;
 import com.qian.fang.ho.dic.column.dao.IDicColumnDAO;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 表字段注册业务处理实现类.
@@ -49,27 +50,31 @@ public class DicColumnBPOImpl implements IDicColumnBPO {
 	}
 
 	public List<DicColumnEntity> deleteColumns(List<DicColumnEntity> dicColumns) {
-		return this.deleteColumns(dicColumns);
+		return dicColumnDAO.deleteColumns(dicColumns);
 	}
 
 	public List<DicColumnEntity> updateColumns(List<DicColumnEntity> dicColumns) {
-		return this.deleteColumns(dicColumns);
+		return dicColumnDAO.deleteColumns(dicColumns);
 	}
 
 	public DicColumnEntity updateColumn(DicColumnEntity dicColumn) {
-		return this.updateColumn(dicColumn);
+		return dicColumnDAO.updateColumn(dicColumn);
 	}
 
 	public List<DicColumnEntity> findAllColumns() {
-		return this.findAllColumns();
+		return dicColumnDAO.findAllColumns();
 	}
 
 	public DicColumnEntity findColumnByCode(String columncode) {
-		return this.findColumnByCode(columncode);
+		return dicColumnDAO.findColumnByCode(columncode);
 	}
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {
-		return this.findColumnById(entity, pkId);
+		return dicColumnDAO.findColumnById(entity, pkId);
+	}
+
+	public List<DicColumnEntity> findColumnsByTableFK(DicTableEntity table) {
+		return dicColumnDAO.findColumnsByTableFK(table);
 	}
 
 

@@ -12,6 +12,7 @@ package com.qian.fang.ho.dic.element.bpo;
 import java.util.List;
 
 import com.qian.fang.ho.dic.element.entity.DicElementEntity;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  *
@@ -72,4 +73,11 @@ public interface IDicElmentBPO {
 	 * @return DicElementEntity
 	 */
 	DicElementEntity findElementById(DicElementEntity entity,int pkId);
+	
+	/**
+	 * 根据外键FK查找某表定义的要素(根据表ID，如果表实体类只有表编码，则会先根据表编码查找获取表ID).
+	 * @param table 表实体 
+	 * @return List<DicElementEntity>
+	 */
+	List<DicElementEntity> findElementsByTableFK(DicTableEntity table);
 }

@@ -14,6 +14,7 @@ import java.util.List;
 import com.qian.fang.ho.dic.column.bpo.IDicColumnBPO;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
 import com.qian.fang.ho.dic.column.service.IDicColumnService;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 表字段注册服务实现类.
@@ -70,6 +71,10 @@ public class DicColumnServiceImpl implements IDicColumnService {
 
 	public DicColumnEntity findColumnById(DicColumnEntity entity, int pkId) {
 		return this.dicColumnBPO.findColumnById(entity, pkId);
+	}
+
+	public List<DicColumnEntity> findColumnsByTableFK(DicTableEntity table) {
+		return this.dicColumnBPO.findColumnsByTableFK(table);
 	}
 
 

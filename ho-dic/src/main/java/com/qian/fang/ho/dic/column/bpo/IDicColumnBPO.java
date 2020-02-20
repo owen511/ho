@@ -12,6 +12,7 @@ package com.qian.fang.ho.dic.column.bpo;
 import java.util.List;
 
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  * 表字段注册业务处理接口.
@@ -60,6 +61,13 @@ public interface IDicColumnBPO {
 	 * @return List<DicTableEntity>
 	 */
 	List<DicColumnEntity> findAllColumns();
+	
+	/**
+	 * 根据外键FK查找某表字段(根据表ID，如果表实体类只有表编码，则会先根据表编码查找获取表ID).
+	 * @param table 表实体 
+	 * @return List<DicColumnEntity>
+	 */
+	List<DicColumnEntity> findColumnsByTableFK(DicTableEntity table);
 	
 	/**
 	 * 根据表字段编码查找表.

@@ -14,6 +14,7 @@ import java.util.List;
 import com.qian.fang.ho.dic.element.bpo.IDicElmentBPO;
 import com.qian.fang.ho.dic.element.entity.DicElementEntity;
 import com.qian.fang.ho.dic.element.service.IDicElementService;
+import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
  *
@@ -68,6 +69,10 @@ public class DicElementServiceImpl implements IDicElementService {
 
 	public DicElementEntity findElementById(DicElementEntity entity, int pkId) {
 		return this.dicElementBPO.findElementById(entity, pkId);
+	}
+
+	public List<DicElementEntity> findElementsByTableFK(DicTableEntity table) {
+		return this.dicElementBPO.findElementsByTableFK(table);
 	}
 	
 

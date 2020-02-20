@@ -2,7 +2,7 @@
 create table T_HO_DICTABLE
 (
   tableid         NUMBER(9) not null,
-  version         NUMBER(10) not null,
+  version         NUMBER(9) not null,
   tablecode       VARCHAR2(32) not null,
   name            VARCHAR2(32) not null,
   tabletype       CHAR(1) not null,
@@ -16,7 +16,7 @@ create table T_HO_DICTABLE
   startdatecolumn VARCHAR2(20),
   enddatecolumn   VARCHAR2(20),
   govid           VARCHAR2(10),
-  govyear         NUMBER(10),
+  govyear         NUMBER(9),
   uuid            VARCHAR2(32) not null,
   remark          VARCHAR2(255)
 );
@@ -27,6 +27,8 @@ alter table T_HO_DICTABLE
   add constraint UK_T_HO_DICTABLE_01 unique (TABLECODE);
 alter table T_HO_DICTABLE
   add constraint UK_T_HO_DICTABLE_02 unique (UUID);
+alter table T_HO_DICTABLE
+  add constraint UK_T_HO_DICTABLE_03 unique (NAME);
 alter table T_HO_DICTABLE 
   add constraint CK_T_HO_DICTABLE_01 check(TABLECODE between 'A' and 'Z');
 -- Add comments to the columns 
@@ -66,24 +68,32 @@ comment on column T_HO_DICTABLE.uuid
   is '全库唯一字段';
 comment on column T_HO_DICTABLE.remark
   is '备注';
-  
+-- Create sequence 
+create sequence S_HO_DICTABLE
+minvalue 1
+maxvalue 9999999999
+start with 1
+increment by 1
+cache 20
+order;
+
 -- Create table
 create table T_HO_DICCOLUMN
 (
   columnid     NUMBER(9) not null,
-  version      NUMBER(10) not null,
+  version      NUMBER(9) not null,
   tableid      NUMBER(9) not null,
   columncode   VARCHAR2(32) not null,
   name         VARCHAR2(32) not null,
   datatype     CHAR(1) not null,
-  datalength   NUMBER(10),
+  datalength   NUMBER(9),
   scale        NUMBER(6),
   codeformat   VARCHAR2(20),
   filter       VARCHAR2(255),
   nullable     NUMBER(5),
   defaultvalue VARCHAR2(255),
   govid        VARCHAR2(10),
-  govyear      NUMBER(10),
+  govyear      NUMBER(9),
   uuid         VARCHAR2(32) not null,
   remark       VARCHAR2(255)
 );
@@ -94,6 +104,8 @@ alter table T_HO_DICCOLUMN
   add constraint UK_T_HO_DICCOLUMN_01 unique (COLUMNCODE);
 alter table T_HO_DICCOLUMN
   add constraint UK_T_HO_DICCOLUMN_02 unique (UUID);
+alter table T_HO_DICCOLUMN
+  add constraint UK_T_HO_DICCOLUMN_03 unique (NAME);
 alter table T_HO_DICCOLUMN
   add constraint FK_T_HO_DICCOLUMN_DICTABLE foreign key (TABLEID)
   references T_HO_DICTABLE (TABLEID);
@@ -114,24 +126,33 @@ comment on column T_HO_DICCOLUMN.datalength
   is '字段长度';
 comment on column T_HO_DICCOLUMN.scale
   is '精度';
+-- Create sequence 
+create sequence S_HO_DICCOLUMN
+minvalue 1
+maxvalue 9999999999
+start with 1
+increment by 1
+cache 20
+order;
+
 -- Create table
 create table T_HO_DICELEMENT
 (
-  elementid   NUMBER(10) not null,
-  version     NUMBER(10) not null,
-  tableid     NUMBER(10),
-  elementcode VARCHAR2(32 CHAR) not null,
-  name        VARCHAR2(32 CHAR) not null,
-  datatype    CHAR(1 CHAR),
-  datalength  NUMBER(10),
+  elementid   NUMBER(9) not null,
+  version     NUMBER(9) not null,
+  tableid     NUMBER(9) not null,
+  elementcode VARCHAR2(32) not null,
+  name        VARCHAR2(32) not null,
+  datatype    CHAR(1),
+  datalength  NUMBER(9),
   scale       NUMBER(5),
-  codetype    CHAR(1 CHAR),
-  codeformat  VARCHAR2(20 CHAR),
+  codetype    CHAR(1),
+  codeformat  VARCHAR2(20),
   status      NUMBER(5),
-  govid       VARCHAR2(10 CHAR),
-  govyear     NUMBER(10),
-  uuid        VARCHAR2(32 CHAR),
-  remark      VARCHAR2(255 CHAR)
+  govid       VARCHAR2(10),
+  govyear     NUMBER(9),
+  uuid        VARCHAR2(32),
+  remark      VARCHAR2(255)
 );
 -- Create/Recreate primary, unique and foreign key constraints 
 alter table T_HO_DICELEMENT
@@ -141,8 +162,12 @@ alter table T_HO_DICELEMENT
 alter table T_HO_DICELEMENT
   add constraint UK_T_HO_DICELEMENT_02 unique (ELEMENTCODE);
 alter table T_HO_DICELEMENT
+  add constraint UK_T_HO_DICELEMENT_03 unique (UUID);
+alter table T_HO_DICELEMENT
   add constraint FK_T_HO_DICELEMENT_DICTABLE foreign key (TABLEID) 
-  references T_HO_DICTABLE (TABLEID);;
+  references T_HO_DICTABLE (TABLEID);
+alter table T_HO_DICELEMENT 
+  add constraint CK_T_HO_DICELEMENT_01 check(ELEMENTCODE between 'A' and 'Z');
 -- Add comments to the columns 
 comment on column T_HO_DICELEMENT.elementid
   is '要素PK';
@@ -174,3 +199,11 @@ comment on column T_HO_DICELEMENT.uuid
   is '全库唯一';
 comment on column T_HO_DICELEMENT.remark
   is '备注';
+-- Create sequence 
+create sequence S_HO_DICELEMENT
+minvalue 1
+maxvalue 9999999999
+start with 21
+increment by 1
+cache 20
+order;

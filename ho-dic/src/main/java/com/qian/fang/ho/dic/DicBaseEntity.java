@@ -8,6 +8,8 @@
 
 package com.qian.fang.ho.dic;
 
+import javax.persistence.MappedSuperclass;
+
 import com.qian.fang.ho.common.entity.HOBaseEntity;
 
 /**
@@ -17,13 +19,8 @@ import com.qian.fang.ho.common.entity.HOBaseEntity;
  * @Description: Description of this class
  * @author owen 于 2019年11月24日 下午9:01:14
  */
-
-public class DicBaseEntity extends HOBaseEntity {
-
-	/**
-	 * @Fields serialVersionUID : Description
-	 */
-	private static final long serialVersionUID = -2659768815397237017L;
+@MappedSuperclass
+public abstract class DicBaseEntity extends HOBaseEntity {
 
 	// Hibernate用于控制并发的属性，乐观锁。
 	private int version;
@@ -44,6 +41,9 @@ public class DicBaseEntity extends HOBaseEntity {
 
 	@Override
 	public String toString() {
-		return this.getFieldValueByName(this) + super.toString();
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("version=").append(this.getVersion()).append(",");
+		return buffer.append(super.toString()).toString();
 	}
+	
 }

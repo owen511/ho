@@ -28,4 +28,15 @@
 		class="com.qian.fang.ho.dic.column.service.impl.DicColumnServiceImpl">
 		<property name="dicColumnBPO" ref="dic.column.bpo.impl.DicColumnBPOImpl" />
 	</bean>
+	<!-- 要素定义 -->
+	<bean id="dic.element.dao.impl.DicElementDAOImpl" class="com.qian.fang.ho.dic.element.dao.impl.DicElementDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="dic.element.bpo.impl.DicElementBPOImpl" class="com.qian.fang.ho.dic.element.bpo.impl.DicElementBPOImpl">
+		<property name="dicElementDAO" ref="dic.element.dao.impl.DicElementDAOImpl" />
+	</bean>
+	<bean id="dic.element.service.impl.DicElementServiceImpl"
+		class="com.qian.fang.ho.dic.element.service.impl.DicElementServiceImpl">
+		<property name="dicElementBPO" ref="dic.element.bpo.impl.DicElementBPOImpl" />
+	</bean>
 </beans>

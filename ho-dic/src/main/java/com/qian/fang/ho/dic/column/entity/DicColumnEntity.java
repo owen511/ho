@@ -9,6 +9,8 @@
 
 package com.qian.fang.ho.dic.column.entity;
 
+import java.io.Serializable;
+
 import com.qian.fang.ho.dic.DicBaseEntity;
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
@@ -19,7 +21,7 @@ import com.qian.fang.ho.dic.table.entity.DicTableEntity;
  * @author owen 于 2019年11月25日 下午2:55:37
  */
 
-public class DicColumnEntity extends DicBaseEntity{
+public class DicColumnEntity extends DicBaseEntity implements Serializable{
 
 	/**
 	 * @Fields serialVersionUID : Description
@@ -214,8 +216,4 @@ public class DicColumnEntity extends DicBaseEntity{
 		this.tableEntity = tableEntity;
 	}
 
-	@Override
-	public String toString() {
-		return this.getFieldValueByName(this) + super.toString();
-	}
 }

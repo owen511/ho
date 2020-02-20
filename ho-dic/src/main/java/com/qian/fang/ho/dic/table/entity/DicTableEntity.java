@@ -8,11 +8,13 @@
 
 package com.qian.fang.ho.dic.table.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.qian.fang.ho.dic.DicBaseEntity;
 import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
+import com.qian.fang.ho.dic.element.entity.DicElementEntity;
 
 /**
  * 表注册实体类.
@@ -21,7 +23,7 @@ import com.qian.fang.ho.dic.column.entity.DicColumnEntity;
  * @author owen 于 2019年11月24日 下午3:06:18
  */
 
-public class DicTableEntity extends DicBaseEntity {
+public class DicTableEntity extends DicBaseEntity implements Serializable{
 
 	/**
 	 * @Fields serialVersionUID : Description
@@ -68,8 +70,11 @@ public class DicTableEntity extends DicBaseEntity {
 	//停用日期字段.
 	private String enddatecolumn;
 	
-	//列集合 (一张表有对个列,一对多). 
-	private Set<DicColumnEntity> columns = new HashSet<DicColumnEntity>();
+	//列集合 (一张表有多个列,一对多). 
+	private Set<DicColumnEntity> columnsSet = new HashSet<DicColumnEntity>();
+	
+	//数据源要素集合 (一张表有对应多个数据项要素,一对多).
+	private Set<DicElementEntity> elementsSet = new HashSet<DicElementEntity>();
 	
 	/**
 	 * @return tableid
@@ -256,20 +261,36 @@ public class DicTableEntity extends DicBaseEntity {
 	/**
 	 * @return columns
 	 */
-	public Set<DicColumnEntity> getColumns() {
-		return columns;
+	public Set<DicColumnEntity> getColumnsSet() {
+		return columnsSet;
 	}
 
 	/**
 	 * @param columns 要设置的 columns
 	 */
-	public void setColumns(Set<DicColumnEntity> columns) {
-		this.columns = columns;
+	public void setColumnsSet(Set<DicColumnEntity> columnsSet) {
+		this.columnsSet = columnsSet;
+	}
+
+	/**
+	 * @return elementsSet
+	 */
+	public Set<DicElementEntity> getElementsSet() {
+		return elementsSet;
+	}
+
+	/**
+	 * @param elementsSet 要设置的 elementsSet
+	 */
+	public void setElementsSet(Set<DicElementEntity> elementsSet) {
+		this.elementsSet = elementsSet;
 	}
 	
 	@Override
 	public String toString() {
-		return this.getFieldValueByName(this) + super.toString();
+//		StringBuffer buffer = new StringBuffer();
+//		buffer.append(this.getFieldValueByName()).append(",");
+//		return buffer.append(super.toString()).toString();
+		return this.getFieldValueByNameIncludeSuper();
 	}
-	
 }
