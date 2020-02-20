@@ -8,10 +8,13 @@
 
 package com.qian.fang.ho.common.entity;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import javax.persistence.MappedSuperclass;
+
+import org.apache.log4j.Logger;
 
 /**
  * 公共底层实体类.
@@ -20,14 +23,10 @@ import java.lang.reflect.Method;
  * @Description: Description of this class
  * @author owen 于 2019年11月24日 下午8:59:15
  */
-
-public class HOBaseEntity implements Serializable {
-
-	/**
-	 * @Fields serialVersionUID : Description
-	 */
-
-	private static final long serialVersionUID = 8696358953901586527L;
+@MappedSuperclass
+public abstract class HOBaseEntity {
+	
+	private static Logger logger= Logger.getLogger(HOBaseEntity.class);
 
 	// 唯一标识(格式 8-4-4-4-12).
 	private String uuid;
@@ -51,7 +50,7 @@ public class HOBaseEntity implements Serializable {
 	/**
 	 * @param uuid 要设置的 uuid
 	 */
-	public void setuuid(String uuid) {
+	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
@@ -99,8 +98,13 @@ public class HOBaseEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		HOBaseEntity entity = new HOBaseEntity();
-		return getFieldValueByName(entity);
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("uuid=").append(this.getUuid()).append(",");
+		buffer.append("govid=").append(this.getGovid()).append(",");
+		buffer.append("govyear=").append(this.getGovyear()).append(",");
+		buffer.append("remark=").append(this.getRemark());
+		return buffer.toString();
+		//return this.getFieldValueByName();
 	}
 
 	/**
@@ -108,34 +112,99 @@ public class HOBaseEntity implements Serializable {
 	 * @param entity
 	 * @return
 	 */
-	public String getFieldValueByName(HOBaseEntity entity) {
-		StringBuffer sbf = new StringBuffer();
+	public String getFieldValueByName() {
+		Class<?> cls = this.getClass();
+		logger.debug("获取："+cls.getName()+"类的所有属性与值");
+		StringBuffer fieldsbuffer = new StringBuffer("["+cls.getSimpleName()+"]");
 		// 获取所有属性
-		Field[] fields = entity.getClass().getDeclaredFields();
-		for (Field field : fields) {
-			String fieldName = field.getName();// 属性名
-			if (fieldName.equals("serialVersionUID")) {
-				continue;
+		Field[] fields = null;
+		if (null != cls) {
+			fields = cls.getDeclaredFields();
+			for (Field field : fields) {
+				String fieldName = field.getName();// 属性名
+				if (fieldName.equals("serialVersionUID") || fieldName.equals("logger")) {
+					continue;
+				}
+				String firstLetter = fieldName.substring(0, 1).toUpperCase();
+				String getter = "get" + firstLetter + fieldName.substring(1);// 属性getter方法
+				Object value = null;
+				try {
+					Method method = cls.getMethod(getter, new Class[] {});
+					value = method.invoke(this, new Object[] {});
+					try {
+						if (field.getType().newInstance() instanceof HOBaseEntity) {
+							value ="["+value+"],";
+						}
+					} catch (InstantiationException e) {
+						//e.printStackTrace();
+					}
+				} catch (NoSuchMethodException e) {
+					logger.error("["+this.getClass().getName()+"]中属性："+fieldName+"没有对应的getter方法");
+					//e.printStackTrace();
+				} catch (SecurityException e) {
+					logger.error("["+this.getClass().getName()+"]中属性："+fieldName+"的getter方法时异常");
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				fieldsbuffer.append(fieldName).append("=").append(value).append(",");
 			}
-			String firstLetter = fieldName.substring(0, 1).toUpperCase();
-			String getter = "get" + firstLetter + fieldName.substring(1);// 属性getter方法
-			Object value = null;
-			try {
-				Method method = entity.getClass().getMethod(getter, new Class[] {});
-				value = method.invoke(entity, new Object[] {});
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			}
-			sbf.append(fieldName).append("=").append(value).append("\t");
 		}
-		return sbf.toString();
+		return fieldsbuffer.substring(0, fieldsbuffer.length()-1).toString();
+	}
+	
+	/**
+	 *  输出属性和属性值(含父类属性).
+	 * @param entity
+	 * @return
+	 */
+	public String getFieldValueByNameIncludeSuper() {
+		Class<?> cls = this.getClass();
+		logger.debug("获取："+cls.getName()+"类的所有属性与值");
+		StringBuffer fieldsbuffer = new StringBuffer("["+cls.getSimpleName()+"]");
+		// 获取所有属性
+		Field[] fields = null;
+		while (null != cls) {
+			fields = cls.getDeclaredFields();
+			for (Field field : fields) {
+				String fieldName = field.getName();// 属性名
+				if (fieldName.equals("serialVersionUID") || fieldName.equals("logger")) {
+					continue;
+				}
+				String firstLetter = fieldName.substring(0, 1).toUpperCase();
+				String getter = "get" + firstLetter + fieldName.substring(1);// 属性getter方法
+				Object value = null;
+				try {
+					Method method = cls.getMethod(getter, new Class[] {});
+					value = method.invoke(this, new Object[] {});
+					try {
+						if (field.getType().newInstance() instanceof HOBaseEntity) {
+							value ="["+value+"],";
+						}
+					} catch (InstantiationException e) {
+						//e.printStackTrace();
+					}
+				} catch (NoSuchMethodException e) {
+					logger.error("["+this.getClass().getName()+"]中属性："+fieldName+"没有对应的getter方法");
+					//e.printStackTrace();
+				} catch (SecurityException e) {
+					logger.error("["+this.getClass().getName()+"]中属性："+fieldName+"的getter方法时异常");
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				fieldsbuffer.append(fieldName).append("=").append(value).append(",");
+			}
+			cls = cls.getSuperclass();//获取父类
+		}
+		return fieldsbuffer.substring(0, fieldsbuffer.length()-1).toString();
 	}
 }

@@ -6,12 +6,14 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-    <!-- 公共spring hibernate 配置 -->
-	<import resource="ho-common.xml" />
-	<!-- 菜单模块 配置 -->
-	<import resource="ho-menu.xml" />
-	<!-- 数据字典模块 配置 -->
-	<import resource="ho-dic.xml" />
-	<!-- 用户模块 配置 
-	<import resource="ho-ca.xml" />-->
+	<!-- 菜单模块 -->
+	<bean id="menu.dao.impl.MenuDAOImpl" class="com.qian.fang.ho.menu.dao.impl.MenuDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="menu.bpo.impl.MenuBPOImpl" class="com.qian.fang.ho.menu.bpo.impl.MenuBPOImpl">
+		<property name="menuDAO" ref="menu.dao.impl.MenuDAOImpl" />
+	</bean>
+	<bean id="menu.service.impl.MenuServiceImpl" class="com.qian.fang.ho.menu.service.impl.MenuServiceImpl">
+		<property name="menuBPO" ref="menu.bpo.impl.MenuBPOImpl" />
+	</bean>
 </beans>

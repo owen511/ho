@@ -10,6 +10,7 @@ package com.qian.fang.ho.common.uitl;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  ** 日期时间格式工具类.
@@ -18,12 +19,9 @@ import java.util.Calendar;
  */
 
 public class DateFormatUtil {
-	public static final String DATE_DIVISION = "-";
 
-	public static final String TIME_PATTON_DEFAULT = "yyyy-MM-dd HH:mm:ss";
-	public static final String DATE_PATTON_DEFAULT = "yyyy-MM-dd";
-	public static final String DATE_PATTON_YYYYMMDD = "yyyyMMdd";
-	public static final String DATE_PATTON_YYYY = "yyyy";
+	public static final String TIME_PATTON_DEFAULT = "yyyyMMdd HH:mm:ss";
+	public static final String DATE_PATTON_DEFAULT = "yyyyMMdd";
 	public static final String TIME_PATTON_HHMMSS = "HH:mm:ss";
 
 	public static final int ONE_SECOND = 1000;
@@ -47,10 +45,35 @@ public class DateFormatUtil {
 		return calendar.get(Calendar.YEAR);
 	}
 	
+	/**
+	 * 获取当前日期.
+	 * @return
+	 */
+	public static String getCurrentDate() {
+		return dateFormat(DATE_PATTON_DEFAULT).format(new Date());
+	}
+	
+	/**
+	 * 获取当前日期时间.
+	 * @return
+	 */
+	public static String getCurrentDateTime() {
+		return dateFormat(TIME_PATTON_DEFAULT).format(new Date());
+	}
+	
+	
+	/**
+	 * 获取当前时间.
+	 * @return
+	 */
+	public static String getCurrentTime() {
+		return dateFormat(TIME_PATTON_HHMMSS).format(new Date());
+	}
+	
 	public static void main(String args []) {
-		Calendar calendar = Calendar.getInstance();
-		System.out.println(Calendar.YEAR);
-		System.out.println(calendar.get(1));
+		System.out.println(DateFormatUtil.getCurrentDate());
+		System.out.println(DateFormatUtil.getCurrentDateTime());
+		System.out.println(DateFormatUtil.getCurrentTime());
 	}
 
 }

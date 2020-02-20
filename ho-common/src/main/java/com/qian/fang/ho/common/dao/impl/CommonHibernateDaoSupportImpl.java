@@ -19,7 +19,6 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.qian.fang.ho.common.dao.ICommonHibernateDaoSupport;
 import com.qian.fang.ho.common.entity.HOBaseEntity;
-import com.qian.fang.ho.common.uitl.DateFormatUtil;
 
 /**
  * 公共数据访问实现类.
@@ -50,8 +49,7 @@ public class CommonHibernateDaoSupportImpl<T extends HOBaseEntity> extends Hiber
 	}
 
 	public void save(T t) {
-		t.setuuid(getRandomUUID());
-		t.setGovyear(DateFormatUtil.getYear());
+		t.setUuid(getRandomUUID());
 		getHibernateTemplate().save(t);
 	}
 

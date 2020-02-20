@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 菜单 -->
+	<class name="com.qian.fang.ho.menu.entity.MenuEntity" table="t_ho_menu" optimistic-lock="version">
+		<id name="menuid" type="int" length="9">
+			<generator class="native" />
+		</id>
+		<version column="version" name="version" type="int" />
+		<property name="code" type="string" length="32" not-null="true" />
+		<property name="name" type="string" length="32" not-null="true" />
+		<property name="url" type="string" length="200" not-null="true" />
+		<property name="levelno" type="int" length="1" not-null="true" />
+		<property name="isleaf" type="int" length="1" not-null="true" />
+		<property name="superid" type="int" length="9" not-null="true" />
+		<!-- 
+		<property name="govid" type="string" length="10" />
+		<property name="govyear" type="int" length="4" /> -->
+		<property name="uuid" type="string" length="32" />
+		<property name="remark" type="string" />
+	</class>
+</hibernate-mapping>

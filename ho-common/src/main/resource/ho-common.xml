@@ -13,7 +13,6 @@
 		<!-- 扫描时跳过 @Controller 注解的JAVA类 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" 
 			/> -->
 	</context:component-scan>
-
 	<!--********************************************配置hibernate******************************************** -->
 
 	<!--扫描配置文件(这里指向的是之前配置的那个jdbc.properties) 如果有改动需要修改 -->
@@ -34,30 +33,32 @@
 	<!--配置session工厂 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!--如果有修改需要改成对应的配置文件 -->
-		<property name="packagesToScan" value="com.qian.fang.ho.dic.table.entity" />
+		<!--如果有修改需要改成对应的配置文件 包扫描-->
+		<property name="packagesToScan" value="com.qian.fang.ho.*" />
 		<property name="hibernateProperties">
 			<props>
-				<!--hibernate根据实体自动生成数据库表 
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
+				<!--hibernate根据实体自动生成数据库表
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
 				<!--指定数据库方言 -->
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!--在控制台显示执行的数据库操作语句 -->
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<!--在控制台显示执行的数据哭操作语句（格式） -->
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<!-- 自动生成DDL，修改表时需要此配置 -->
-				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<!-- 自动生成DDL，修改表时需要此配置 
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>-->
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>
 			</props>
 		</property>
-		<!-- <property name="mappingLocations" value="classpath:com/qian/fang/ho/dic/*.hbm.xml" /> -->
 		<property name="mappingLocations">
-			<value>classpath:com/qian/fang/ho/dic/dic.hbm.xml</value>
+			<!-- 当使用通配符时 classpath要加* -->
+			<value>classpath*:com/qian/fang/ho/**/*.hbm.xml</value>
+			<!--  
+			<list>
+				<value>classpath:com/qian/fang/ho/dic/dic.hbm.xml</value>
+				<value>classpath:com/qian/fang/ho/ca/ca.hbm.xml</value>
+			</list>-->
 		</property>
-
-		<!-- mappingResources 具体映射文件名 每添加一个hbm.xml文件,在<list>中添加一条<value>记录 <property name="mappingResources"> <list> <value>com/qian/fang/ho/dic/dic.hbm.xml</value> 
-			</list> </property> -->
 	</bean>
 
 	<!-- 事物管理器配置 -->
@@ -78,7 +79,7 @@
 	</tx:advice>
 	<!--切面 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="txPointcut" expression="execution(* com.qian.fang.ho.dic..*.*(..))" />
+		<aop:pointcut id="txPointcut" expression="execution(* com.qian.fang.ho..*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 </beans>
