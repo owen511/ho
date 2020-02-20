@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- 表注册模块 -->
+	<bean id="ca.user.dao.impl.UserDAOImpl" class="com.qian.fang.ho.ca.user.dao.impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ca.user.bpo.impl.UserBPOImpl" class="com.qian.fang.ho.ca.user.bpo.impl.UserBPOImpl">
+		<property name="userDAO" ref="ca.user.dao.impl.UserDAOImpl" />
+	</bean>
+	<bean id="ca.user.service.impl.UserServiceImpl" class="com.qian.fang.ho.ca.user.service.impl.UserServiceImpl">
+		<property name="userBPO" ref="ca.user.bpo.impl.UserBPOImpl" />
+	</bean>
+	
+	<bean id="ca.menu.dao.impl.MenuDAOImpl" class="com.qian.fang.ho.menu.dao.impl.MenuDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ca.menu.bpo.impl.MenuBPOImpl" class="com.qian.fang.ho.menu.bpo.impl.MenuBPOImpl">
+		<property name="menuDAO" ref="ca.menu.dao.impl.MenuDAOImpl" />
+	</bean>
+	<bean id="ca.menu.service.impl.MenuServiceImpl" class="com.qian.fang.ho.menu.service.impl.MenuServiceImpl">
+		<property name="menuBPO" ref="ca.menu.bpo.impl.MenuBPOImpl" />
+	</bean>
+</beans>
