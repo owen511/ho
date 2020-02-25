@@ -8,8 +8,11 @@
 	<modules>
 		<module>ho-common</module>
 		<module>ho-dic</module>
+		<module>ho-ui</module>
+		<module>ho-ui-web</module>
+		<module>ho-ca</module>
 	</modules>
-	<!-- 本人将配置包的版本信息都统一放入此处，方便以后管理 -->
+	<!-- 将配置包的版本信息都统一放入此处，方便以后管理 -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- <springVersion>4.3.1.RELEASE</springVersion> 
