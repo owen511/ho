@@ -7,7 +7,7 @@
  * @author owen
  */
 
-package com.qian.fang.ho.ca.user.constant;
+package com.qian.fang.ho.ca.constant;
 
 /**
  * 用户状态枚举类.

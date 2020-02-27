@@ -6,6 +6,7 @@ create table T_HO_CAUSER
   code       VARCHAR2(32) not null,
   name       VARCHAR2(32) not null,
   type       NUMBER(1) not null,
+  clsid		 number(9) not null,
   state      NUMBER(1) not null,
   cardno     VARCHAR2(18),
   createdate VARCHAR2(20),
@@ -95,6 +96,47 @@ comment on column T_HO_MENU.remark
   is '备注';
 -- Create sequence 
 create sequence S_HO_MENU
+minvalue 1
+maxvalue 9999999999
+start with 1
+increment by 1
+cache 20
+order;
+
+-- Create table T_HO_CACLS
+create table T_HO_CACLS
+(
+  clsid  NUMBER(9) not null,
+  code    VARCHAR2(32) not null,
+  name    VARCHAR2(32) not null,
+  superid NUMBER(9) not null,
+  type	  NUMBER(1) not null,
+  createdate VARCHAR2(20),
+  updatedate VARCHAR2(20),
+  remark  VARCHAR2(255)
+);
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table T_HO_CACLS
+  add constraint PK_T_HO_CACLS primary key (CLSID);
+--Add comments to the columns
+comment on column T_HO_CACLS.clsid
+  is '分类ID PK';
+comment on column T_HO_CACLS.code
+  is '编码';
+comment on column T_HO_CACLS.name
+  is '名称';
+comment on column T_HO_CACLS.superid
+  is '上级ID';
+comment on column T_HO_CACLS.type
+  is '分类';
+comment on column T_HO_CACLS.createdate
+  is '创建日期';
+comment on column T_HO_CACLS.updatedate
+  is '修改日期';
+comment on column T_HO_CACLS.remark
+  is '备注';
+-- Create sequence 
+create sequence S_HO_CACLS
 minvalue 1
 maxvalue 9999999999
 start with 1

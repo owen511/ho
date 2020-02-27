@@ -6,7 +6,6 @@
  * @Revision 1.0 2020年2月9日 下午6:17:07
  * @author owen
  */
- 
 
 package com.qian.fang.ho.ca.constant;
 
@@ -19,8 +18,8 @@ package com.qian.fang.ho.ca.constant;
 
 public enum ClsTypeEnum {
 
-	CLS_ROLE("用户组", 0), CLS_DATA("数据权限组", 1),CLS_FUNC("功能权限组", 2);
-	
+	CLS_USER("用户组", 0), CLS_ROLE("角色组", 1), CLS_DATA("数据权限组", 2), CLS_FUNC("功能权限组", 3);
+
 	private String name;
 
 	private int value;

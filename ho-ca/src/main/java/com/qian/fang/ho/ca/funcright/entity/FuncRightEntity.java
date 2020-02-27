@@ -30,7 +30,7 @@ public class FuncRightEntity extends CaBaseEntity implements Serializable{
 	
 	private static final long serialVersionUID = 5507544888797263370L;
 	
-	// 功能权限ID
+	// 功能权限流水号ID
 	private int funcright;
 	
 	//归属哪个类别. ClsTypeEnum.CLS_FUNC=2

@@ -17,13 +17,13 @@
 		<property name="userBPO" ref="ca.user.bpo.impl.UserBPOImpl" />
 	</bean>
 	
-	<bean id="ca.menu.dao.impl.MenuDAOImpl" class="com.qian.fang.ho.menu.dao.impl.MenuDAOImpl">
+	<bean id="ca.cls.dao.impl.ClsDAOImpl" class="com.qian.fang.ho.ca.cls.dao.impl.ClsDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="ca.menu.bpo.impl.MenuBPOImpl" class="com.qian.fang.ho.menu.bpo.impl.MenuBPOImpl">
-		<property name="menuDAO" ref="ca.menu.dao.impl.MenuDAOImpl" />
+	<bean id="ca.cls.bpo.impl.ClsBPOImpl" class="com.qian.fang.ho.ca.cls.bpo.impl.ClsBPOImpl">
+		<property name="clsDAO" ref="ca.cls.dao.impl.ClsDAOImpl" />
 	</bean>
-	<bean id="ca.menu.service.impl.MenuServiceImpl" class="com.qian.fang.ho.menu.service.impl.MenuServiceImpl">
-		<property name="menuBPO" ref="ca.menu.bpo.impl.MenuBPOImpl" />
+	<bean id="ca.cls.service.impl.ClsServiceImpl" class="com.qian.fang.ho.ca.cls.service.impl.ClsServiceImpl">
+		<property name="clsBPO" ref="ca.cls.bpo.impl.ClsBPOImpl" />
 	</bean>
 </beans>

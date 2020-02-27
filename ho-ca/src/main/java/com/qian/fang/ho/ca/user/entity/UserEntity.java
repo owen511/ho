@@ -12,6 +12,7 @@ package com.qian.fang.ho.ca.user.entity;
 import java.io.Serializable;
 
 import com.qian.fang.ho.ca.CaBaseEntity;
+import com.qian.fang.ho.ca.cls.entity.ClsEntity;
 
 /**
  * 用户实体类.
@@ -46,6 +47,9 @@ public class UserEntity extends CaBaseEntity implements Serializable{
 	
 	//修改日期
 	private String updatedate;
+	
+	//所属组别
+	private ClsEntity cls;
 
 	/**
 	 * @return userid
@@ -143,6 +147,20 @@ public class UserEntity extends CaBaseEntity implements Serializable{
 	 */
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
+	}
+
+	/**
+	 * @return cls
+	 */
+	public ClsEntity getCls() {
+		return cls;
+	}
+
+	/**
+	 * @param cls 要设置的 cls
+	 */
+	public void setCls(ClsEntity cls) {
+		this.cls = cls;
 	}
 	
 

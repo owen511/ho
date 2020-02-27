@@ -15,7 +15,7 @@ import java.io.Serializable;
 import com.qian.fang.ho.ca.CaBaseEntity;
 
 /**
- * 类别实体.
+ * 分组类别实体.
  * @ClassName:ClsEntity
  * @Description:
  * @author owen 于 2020年2月8日 下午9:51:09
@@ -32,14 +32,11 @@ public class ClsEntity extends CaBaseEntity implements Serializable{
 	//类别id
 	private int clsid;
 	
-	//类别类型 0-角色组 1-数据权限组 2-功能权限
+	//类别类型 0-用户组 1-角色组 2-数据权限组 3-功能权限 ClsTypeEnum枚举类
 	private int type;
 	
 	//上级类别ID
 	private int superid;
-	
-	//系统模块ID
-	private int appid;
 
 	/**
 	 * @return clsid
@@ -81,20 +78,6 @@ public class ClsEntity extends CaBaseEntity implements Serializable{
 	 */
 	public void setSuperid(int superid) {
 		this.superid = superid;
-	}
-
-	/**
-	 * @return appid
-	 */
-	public int getAppid() {
-		return appid;
-	}
-
-	/**
-	 * @param appid 要设置的 appid
-	 */
-	public void setAppid(int appid) {
-		this.appid = appid;
 	}
 
 }

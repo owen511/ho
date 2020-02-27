@@ -11,6 +11,7 @@
 package com.qian.fang.ho.ca;
 
 import com.qian.fang.ho.common.dao.impl.CommonHibernateDaoSupportImpl;
+import com.qian.fang.ho.common.uitl.DateFormatUtil;
 
 /**
  * 用户角色公共数据访问实现类.
@@ -24,6 +25,7 @@ public class CaBaseCommonHibernateDaoSupportImpl<T extends CaBaseEntity> extends
 
 	@Override
 	public void save(T t) {
+		t.setCreatedate(DateFormatUtil.getCurrentDate());
 		super.save(t);
 	}
 }

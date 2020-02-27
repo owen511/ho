@@ -29,6 +29,38 @@ public class FuncRightSubEntity extends CaBaseEntity implements Serializable{
 	
 	private static final long serialVersionUID = 8518278337861827164L;
 	
+	//功能权限子表流水号PK
 	private int funcrightsubid;
+	
+	private FuncRightEntity func;
+
+	/**
+	 * @return funcrightsubid
+	 */
+	public int getFuncrightsubid() {
+		return funcrightsubid;
+	}
+
+	/**
+	 * @param funcrightsubid 要设置的 funcrightsubid
+	 */
+	public void setFuncrightsubid(int funcrightsubid) {
+		this.funcrightsubid = funcrightsubid;
+	}
+
+	/**
+	 * @return func
+	 */
+	public FuncRightEntity getFunc() {
+		return func;
+	}
+
+	/**
+	 * @param func 要设置的 func
+	 */
+	public void setFunc(FuncRightEntity func) {
+		this.func = func;
+	}
+	
 
 }

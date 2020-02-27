@@ -7,7 +7,7 @@
  */
  
 
-package com.qian.fang.ho.ca.user.constant;
+package com.qian.fang.ho.ca.constant;
 
 /**
  * 用户类型枚举类.
