@@ -1,11 +1,22 @@
-/target/
+# Compiled class file
 *.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
 
 # Package Files #
 *.jar
 *.war
+*.nar
 *.ear
-/target
-/.settings
-/.classpath
-/.project
+*.zip
+*.tar.gz
+*.rar
+
+.classpath
+.project
+.settings
+target
