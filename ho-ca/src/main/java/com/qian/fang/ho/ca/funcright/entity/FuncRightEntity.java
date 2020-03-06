@@ -13,7 +13,7 @@ package com.qian.fang.ho.ca.funcright.entity;
 import java.io.Serializable;
 
 import com.qian.fang.ho.ca.CaBaseEntity;
-import com.qian.fang.ho.ca.cls.entity.ClsEntity;
+import com.qian.fang.ho.ca.role.entity.RoleEntity;
 
 /**
  * 功能权限实体类 .
@@ -31,37 +31,37 @@ public class FuncRightEntity extends CaBaseEntity implements Serializable{
 	private static final long serialVersionUID = 5507544888797263370L;
 	
 	// 功能权限流水号ID
-	private int funcright;
-	
-	//归属哪个类别. ClsTypeEnum.CLS_FUNC=2
-	private ClsEntity cls;
+	private int funcrightid;
+
+	//归属哪个角色
+	private RoleEntity role;
 
 	/**
-	 * @return funcright
+	 * @return funcrightid
 	 */
-	public int getFuncright() {
-		return funcright;
+	public int getFuncrightid() {
+		return funcrightid;
 	}
 
 	/**
-	 * @param funcright 要设置的 funcright
+	 * @param funcrightid 要设置的 funcrightid
 	 */
-	public void setFuncright(int funcright) {
-		this.funcright = funcright;
+	public void setFuncrightid(int funcrightid) {
+		this.funcrightid = funcrightid;
 	}
 
 	/**
-	 * @return cls
+	 * @return role
 	 */
-	public ClsEntity getCls() {
-		return cls;
+	public RoleEntity getRole() {
+		return role;
 	}
 
 	/**
-	 * @param cls 要设置的 cls
+	 * @param role 要设置的 role
 	 */
-	public void setCls(ClsEntity cls) {
-		this.cls = cls;
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 	
 }

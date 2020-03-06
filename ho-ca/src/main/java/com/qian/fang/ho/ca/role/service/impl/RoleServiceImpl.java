@@ -29,6 +29,20 @@ public class RoleServiceImpl implements IRoleService {
 	
 	//角色业务处理接口.
 	private IRoleBPO roleBPO;
+	
+	/**
+	 * @return roleBPO
+	 */
+	public IRoleBPO getRoleBPO() {
+		return roleBPO;
+	}
+
+	/**
+	 * @param roleBPO 要设置的 roleBPO
+	 */
+	public void setRoleBPO(IRoleBPO roleBPO) {
+		this.roleBPO = roleBPO;
+	}
 
 	/**
 	 *

@@ -1,14 +1,14 @@
 /**
- * @Title: IFuncRightDAO.java
+ * @Title: IFuncRightService.java
  * @Copyright (C) 2020 前坊软件
  * @Description:
  * @Revision History:
- * @Revision 1.0 2020年2月20日 下午1:50:09
+ * @Revision 1.0 2020年3月5日 下午3:26:00
  * @author owen
  */
  
 
-package com.qian.fang.ho.ca.funcright.dao;
+package com.qian.fang.ho.ca.funcright.service;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ import com.qian.fang.ho.ca.funcright.entity.FuncRightEntity;
 import com.qian.fang.ho.ca.role.entity.RoleEntity;
 
 /**
- * 功能权限访问接口.
- * @ClassName:IFuncRightDAO
+ * 功能权限服务接口.
+ * @ClassName:IFuncRightService
  * @Description:
- * @author owen 于 2020年2月20日 下午1:50:09
+ * @author owen 于 2020年3月5日 下午3:26:00
  */
 
-public interface IFuncRightDAO {
+public interface IFuncRightService {
 
 	/**
 	 *  根据功能权限ID查找功能权限.

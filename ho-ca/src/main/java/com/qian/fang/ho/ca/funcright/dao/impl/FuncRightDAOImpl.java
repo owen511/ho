@@ -31,11 +31,28 @@ public class FuncRightDAOImpl extends CaBaseCommonHibernateDaoSupportImpl<FuncRi
 	}
 
 	public List<FuncRightEntity> findByRoleId(int roleId) {
-		return null;
+		return this.find("from FuncRightEntity where roleid=?0", roleId);
 	}
 
 	public List<FuncRightEntity> findByRoles(List<RoleEntity> roles) {
+		
 		return null;
+	}
+
+	public void addFuncRight(FuncRightEntity func) {
+		this.save(func);
+	}
+
+	public void addFuncRights(List<FuncRightEntity> funcs) {
+		this.save(funcs);
+	}
+
+	public void updateFuncRight(FuncRightEntity func) {
+		this.update(func);
+	}
+
+	public void deleteFuncRights(List<FuncRightEntity> funcs) {
+		this.delete(funcs);
 	}
 
 }

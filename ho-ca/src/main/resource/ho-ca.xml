@@ -6,6 +6,18 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 类别 -->
+	<bean id="ca.cls.dao.impl.ClsDAOImpl" class="com.qian.fang.ho.ca.cls.dao.impl.ClsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ca.cls.bpo.impl.ClsBPOImpl" class="com.qian.fang.ho.ca.cls.bpo.impl.ClsBPOImpl">
+		<property name="clsDAO" ref="ca.cls.dao.impl.ClsDAOImpl" />
+	</bean>
+	<bean id="ca.cls.service.impl.ClsServiceImpl" class="com.qian.fang.ho.ca.cls.service.impl.ClsServiceImpl">
+		<property name="clsBPO" ref="ca.cls.bpo.impl.ClsBPOImpl" />
+	</bean>
+	
 	<!-- 表注册模块 -->
 	<bean id="ca.user.dao.impl.UserDAOImpl" class="com.qian.fang.ho.ca.user.dao.impl.UserDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -17,13 +29,36 @@
 		<property name="userBPO" ref="ca.user.bpo.impl.UserBPOImpl" />
 	</bean>
 	
-	<bean id="ca.cls.dao.impl.ClsDAOImpl" class="com.qian.fang.ho.ca.cls.dao.impl.ClsDAOImpl">
+	<!-- 角色 -->
+	<bean id="ca.role.dao.impl.RoleDAOImpl" class="com.qian.fang.ho.ca.role.dao.impl.RoleDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="ca.cls.bpo.impl.ClsBPOImpl" class="com.qian.fang.ho.ca.cls.bpo.impl.ClsBPOImpl">
-		<property name="clsDAO" ref="ca.cls.dao.impl.ClsDAOImpl" />
+	<bean id="ca.role.bpo.impl.RoleBPOImpl" class="com.qian.fang.ho.ca.role.bpo.impl.RoleBPOImpl">
+		<property name="roleDAO" ref="ca.role.dao.impl.RoleDAOImpl" />
 	</bean>
-	<bean id="ca.cls.service.impl.ClsServiceImpl" class="com.qian.fang.ho.ca.cls.service.impl.ClsServiceImpl">
-		<property name="clsBPO" ref="ca.cls.bpo.impl.ClsBPOImpl" />
+	<bean id="ca.role.service.impl.RoleServiceImpl" class="com.qian.fang.ho.ca.role.service.impl.RoleServiceImpl">
+		<property name="roleBPO" ref="ca.role.bpo.impl.RoleBPOImpl" />
+	</bean>
+	
+	<!-- 功能权限 -->
+	<bean id="ca.funcright.dao.impl.FuncRightDAOImpl" class="com.qian.fang.ho.ca.funcright.dao.impl.FuncRightDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ca.funcright.bpo.impl.FuncRightBPOImpl" class="com.qian.fang.ho.ca.funcright.bpo.impl.FuncRightBPOImpl">
+		<property name="funcRightDAO" ref="ca.funcright.dao.impl.FuncRightDAOImpl" />
+	</bean>
+	<bean id="ca.funcright.service.impl.FuncRightServiceImpl" class="com.qian.fang.ho.ca.funcright.service.impl.FuncRightServiceImpl">
+		<property name="funcRightBPO" ref="ca.funcright.bpo.impl.FuncRightBPOImpl" />
+	</bean>
+	
+	<!-- 数据权限 -->
+	<bean id="ca.dataright.dao.impl.DataRightDAOImpl" class="com.qian.fang.ho.ca.dataright.dao.impl.DataRightDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="ca.dataright.bpo.impl.DataRightBPOImpl" class="com.qian.fang.ho.ca.dataright.bpo.impl.DataRightBPOImpl">
+		<property name="dataRightDAO" ref="ca.dataright.dao.impl.DataRightDAOImpl" />
+	</bean>
+	<bean id="ca.dataright.service.impl.DataRightServiceImpl" class="com.qian.fang.ho.ca.dataright.service.impl.DataRightServiceImpl">
+		<property name="dataRightBPO" ref="ca.dataright.bpo.impl.DataRightBPOImpl" />
 	</bean>
 </beans>
