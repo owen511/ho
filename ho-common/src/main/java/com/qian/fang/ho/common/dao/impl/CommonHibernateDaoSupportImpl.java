@@ -19,6 +19,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.qian.fang.ho.common.dao.ICommonHibernateDaoSupport;
 import com.qian.fang.ho.common.entity.HOBaseEntity;
+import com.qian.fang.ho.common.uitl.SQLParserEnum;
 
 /**
  * 公共数据访问实现类.
@@ -142,5 +143,42 @@ public class CommonHibernateDaoSupportImpl<T extends HOBaseEntity> extends Hiber
 	@SuppressWarnings("unchecked")
 	public T findById(T t, Serializable id) {
 		return (T) getHibernateTemplate().get(t.getClass(), id);
+	}
+
+	public List<T> find(T t, String[] paramNames, Object[] paramValues, String operator) {
+		StringBuffer paramsWhere = new StringBuffer();
+		String filterSql = null;
+		String hql = "from " + t.getClass().getSimpleName();
+		if (null != paramNames && null != paramValues) {
+			if (paramNames.length != paramValues.length) {
+				logger.info("参数和参数值个数不匹配......");
+				return new ArrayList<T>();
+			}
+			// hibernate5 使用占位符时，需要标明参数序号，从0开始:eg: param1=?0,param2=?1
+			int i = 0;
+			for (String paramName : paramNames) {
+				paramsWhere.append(paramName).append("=?").append(i).append(" ").append(operator).append(" ");
+				i++;
+			}
+			//filterSql = paramsWhere.substring(0, paramsWhere.length() - 5);
+			//hql = hql + " where " + filterSql;
+			if(operator.equals(SQLParserEnum.AND.getName())) {
+				paramsWhere.append(" 1=1 ");
+			}else if(operator.equals(SQLParserEnum.OR.getName())) {
+				paramsWhere.append(" 1=2 ");
+			}
+			hql = hql + " where " + paramsWhere;
+		}
+		List<T> result = this.find(hql, paramValues);
+		if (result.isEmpty()) {
+			StringBuffer values = new StringBuffer();
+			for (Object paramValue : paramValues) {
+				values.append(paramValue).append(",");
+			}
+			logger.info("按条件【" + filterSql + "】=【" + values.substring(0, values.length() - 1) + "】查询,没有找到符合的数据......");
+			return new ArrayList<T>();
+		} else {
+			return result;
+		}
 	}
 }

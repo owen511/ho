@@ -8,10 +8,10 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     <!-- 公共spring hibernate 配置 -->
 	<import resource="ho-common.xml" />
-	<!-- 菜单模块 配置 -->
+	<!-- menu 菜单模块 配置 -->
 	<import resource="ho-menu.xml" />
-	<!-- 数据字典模块 配置 -->
+	<!-- dic 数据字典模块 配置 -->
 	<import resource="ho-dic.xml" />
-	<!-- 用户模块 配置 
-	<import resource="ho-ca.xml" />-->
+	<!-- user 用户模块 配置 -->
+	<import resource="ho-ca.xml" />
 </beans>

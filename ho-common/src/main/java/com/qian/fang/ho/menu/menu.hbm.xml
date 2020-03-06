@@ -5,7 +5,9 @@
 	<!-- 菜单 -->
 	<class name="com.qian.fang.ho.menu.entity.MenuEntity" table="t_ho_menu" optimistic-lock="version">
 		<id name="menuid" type="int" length="9">
-			<generator class="native" />
+			<generator class="sequence">
+				<param name="sequence_name">s_ho_menu</param>
+			</generator>
 		</id>
 		<version column="version" name="version" type="int" />
 		<property name="code" type="string" length="32" not-null="true" />

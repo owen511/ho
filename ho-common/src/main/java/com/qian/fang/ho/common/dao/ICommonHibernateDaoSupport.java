@@ -107,6 +107,16 @@ public interface ICommonHibernateDaoSupport<T extends HOBaseEntity> {
 	List<T> find(T t, String paramNames[], Object paramValues[]);
 	
 	/**
+	 * 查找
+	 * @param t 实体类变量
+	 * @param paramNames 参数名
+	 * @param paramValues 参数值
+	 * @param operator 操作符 and、or 取值于 RestrictionsEnum枚举类
+	 * @return
+	 */
+	List<T> find(T t, String paramNames[], Object paramValues[], String operator);
+	
+	/**
 	 * 查询.
 	 * @param t
 	 * @param id 序列化实体唯一值(PK)
