@@ -23,10 +23,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringTestLoadUtil {
 	private static String conf = "classpath:applicationContext.xml";
 	private static ApplicationContext context = null;
+	//加载公共spring配置文件
 	static {
 		context = new ClassPathXmlApplicationContext(conf);
 	}
 	
+	/**
+	 * 获取上下文.
+	 * @return
+	 */
 	public static ApplicationContext getAppContext() {
 		return context;
 	}

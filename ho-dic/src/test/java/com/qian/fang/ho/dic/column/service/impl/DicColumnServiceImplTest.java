@@ -25,6 +25,7 @@ import com.qian.fang.ho.dic.column.service.IDicColumnService;
 import com.qian.fang.ho.dic.table.entity.DicTableEntity;
 
 /**
+ * 表字段测试类.
  * @ClassName:DicColumnServiceImplTest
  * @Description:
  * @author owen 于 2020年1月20日 下午2:09:21

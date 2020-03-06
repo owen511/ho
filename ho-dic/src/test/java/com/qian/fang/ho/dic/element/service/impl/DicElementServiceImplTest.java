@@ -27,6 +27,7 @@ import com.qian.fang.ho.dic.table.service.IDicTableService;
 import com.qian.fang.ho.dic.table.service.impl.DicTableServiceImpl;
 
 /**
+ * 要素定义测试类.
  * @ClassName:DicElementServiceImplTest
  * @Description:
  * @author owen 于 2020年1月20日 下午1:58:06

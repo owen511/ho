@@ -26,6 +26,7 @@ import com.qian.fang.ho.dic.table.service.IDicTableService;
 import junit.framework.Assert;
 
 /**
+ * 表注册测试类.
  * @ClassName:DicTableServiceImplTest
  * @Description:
  * @author owen 于 2020年1月20日 上午10:51:08
