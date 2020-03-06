@@ -16,7 +16,7 @@ package com.qian.fang.ho.common.uitl;
  * @author owen 于 2020年2月21日 下午4:01:11
  */
 
-public enum SQLParserEnum { 
+public enum SQLParserEnum {
 	AND("and"), OR("or"), IN("in"), LIKE("like"), EQ("="), GT(">"), GE(">="), LT("<"), LE("<="), BETWEEN("between");
 
 	private String name;
